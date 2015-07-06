@@ -13,55 +13,58 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :imdb_url %><br>
-    <%= f.text_field :imdb_url %>
+    <%= f.text_field :imdb_url, class: "form-control" %>
+  </div>
+  <%= image_tag @movie.imdb_artwork, class: "artwork" %>
+  <div class="field">
+    <%= f.label :imdb_artwork %><br>
+    <%= f.text_field :imdb_artwork, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :watch_url %><br>
-    <%= f.text_field :watch_url %>
+    <%= f.text_field :watch_url, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :date_watched %><br>
-    <%= f.date_select :date_watched %>
+    <%= f.date_select :date_watched, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :location_watched %><br>
-    <%= f.text_field :location_watched %>
+    <%= f.text_field :location_watched, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+    <%= f.collection_select :category_id, Category.all.order("name"), :id, :name,  {prompt: "Enter a Category"}, {class: "form-control"} %>
   </div>
   <div class="field">
     <%= f.label :watchlist_id %><br>
-    <%= f.text_field :watchlist_id %>
+    <%= f.collection_select :watchlist_id, Watchlist.all.order("list"), :id, :list,  {prompt: "Who Should Watch This?"}, {class: "form-control"} %>
   </div>
+  
   <div class="field">
     <%= f.label :our_rating %><br>
-    <%= f.text_field :our_rating %>
+    <%= f.text_field :our_rating, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :imdb_artwork %><br>
-    <%= f.text_field :imdb_artwork %>
-  </div>
+  
   <div class="field">
     <%= f.label :imdb_plot_summary %><br>
-    <%= f.text_area :imdb_plot_summary %>
+    <%= f.text_area :imdb_plot_summary, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :imdb_rating %><br>
-    <%= f.text_field :imdb_rating %>
+    <%= f.text_field :imdb_rating, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :imdb_genre %><br>
-    <%= f.text_area :imdb_genre %>
+    <%= f.text_area :imdb_genre, class: "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit %>

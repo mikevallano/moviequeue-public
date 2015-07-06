@@ -16,7 +16,9 @@
 
 .artwork {
   width: 100%;
+  max-width: 200px;
 }
+
  .stats {
   font-size: 90%;
   border-bottom: 1px solid gray;
