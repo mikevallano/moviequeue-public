@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+ .stats {
+  font-size: 90%;
+  border-bottom: 1px solid gray;
+  color: gray;
+ }
+
+ .watch-info {
+  margin: 0 auto;
+  text-align: center;
+ }
+
+ .watch-info p {
+  color: gray;
+  font-size: 70%;
+  font-style: italic;
+ }

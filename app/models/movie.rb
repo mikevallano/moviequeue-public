@@ -23,6 +23,8 @@ end
 #  imdb_genre        :text
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  preview_link      :string
+#  runtime           :integer
 #
 # Indexes
 #
