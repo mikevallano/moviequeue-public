@@ -2,7 +2,7 @@
 
 <h1>Listing Movies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -26,15 +26,15 @@
     <% @movies.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.imdb_url %></td>
-        <td><%= movie.watch_url %></td>
+        <td><%= link_to 'IMDB', movie.imdb_url %></td>
+        <td><%= link_to 'Watch', movie.watch_url %></td>
         <td><%= movie.date_watched %></td>
         <td><%= movie.location_watched %></td>
-        <td><%= movie.category %></td>
-        <td><%= movie.watchlist %></td>
+        <td><%= movie.category.name %></td>
+        <td><%= movie.watchlist.list %></td>
         <td><%= movie.our_rating %></td>
         <td><%= movie.notes %></td>
-        <td><%= movie.imdb_artwork %></td>
+        <td><%= image_tag movie.imdb_artwork %></td>
         <td><%= movie.imdb_plot_summary %></td>
         <td><%= movie.imdb_rating %></td>
         <td><%= movie.imdb_genre %></td>
