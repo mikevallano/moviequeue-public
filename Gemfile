@@ -7,8 +7,6 @@ gem 'rails_12factor'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -53,8 +51,11 @@ gem 'fog'
 #gem 'sunspot_rails'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
-gem 'honeybadger'
-gem 'gibbon'
+gem 'honeybadger' #read updates at https://www.honeybadger.io/s/gem-upgrade
+
+gem 'gibbon' #Please use Gibbon 0.4.6 if you need to use API 1.3.
+              #If you're upgrading from <0.5.0 your code WILL break
+
 gem 'mandrill-api'
 gem 'pry'
 gem 'jquery-ui-rails'
@@ -73,6 +74,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
+gem 'capistrano-passenger'
 
 gem 'sunspot_solr', group: :development
 
