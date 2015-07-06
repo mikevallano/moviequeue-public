@@ -334,6 +334,7 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stamp (0.6.0)
     starter_generators (0.9.6)
     stripe (1.22.0)
       json (~> 1.8.1)
@@ -408,6 +409,7 @@ DEPENDENCIES
   spring
   sprockets
   sqlite3
+  stamp
   starter_generators
   stripe
   sunspot_solr

@@ -38,6 +38,8 @@ gem "starter_generators"
 
 gem "font-awesome-rails"
 
+gem 'stamp'
+
 gem 'puma'
 gem 'yui-compressor'
 gem 'bootstrap-sass'
