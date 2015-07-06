@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  imdb_url: MyString
+  watch_url: MyString
+  date_watched: 2015-07-06
+  location_watched: MyString
+  category_id: 
+  watchlist_id: 
+  our_rating: 1.5
+  notes: MyText
+  imdb_artwork: MyString
+  imdb_plot_summary: MyText
+  imdb_rating: 1.5
+  imdb_genre: MyText
+
+two:
+  title: MyString
+  imdb_url: MyString
+  watch_url: MyString
+  date_watched: 2015-07-06
+  location_watched: MyString
+  category_id: 
+  watchlist_id: 
+  our_rating: 1.5
+  notes: MyText
+  imdb_artwork: MyString
+  imdb_plot_summary: MyText
+  imdb_rating: 1.5
+  imdb_genre: MyText

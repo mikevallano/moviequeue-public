@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Imdb url:</strong>
+  <%= @movie.imdb_url %>
+</p>
+
+<p>
+  <strong>Watch url:</strong>
+  <%= @movie.watch_url %>
+</p>
+
+<p>
+  <strong>Date watched:</strong>
+  <%= @movie.date_watched %>
+</p>
+
+<p>
+  <strong>Location watched:</strong>
+  <%= @movie.location_watched %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @movie.category %>
+</p>
+
+<p>
+  <strong>Watchlist:</strong>
+  <%= @movie.watchlist %>
+</p>
+
+<p>
+  <strong>Our rating:</strong>
+  <%= @movie.our_rating %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @movie.notes %>
+</p>
+
+<p>
+  <strong>Imdb artwork:</strong>
+  <%= @movie.imdb_artwork %>
+</p>
+
+<p>
+  <strong>Imdb plot summary:</strong>
+  <%= @movie.imdb_plot_summary %>
+</p>
+
+<p>
+  <strong>Imdb rating:</strong>
+  <%= @movie.imdb_rating %>
+</p>
+
+<p>
+  <strong>Imdb genre:</strong>
+  <%= @movie.imdb_genre %>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

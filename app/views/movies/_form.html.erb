@@ -1,0 +1,69 @@
+<%= form_for(@movie) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_url %><br>
+    <%= f.text_field :imdb_url %>
+  </div>
+  <div class="field">
+    <%= f.label :watch_url %><br>
+    <%= f.text_field :watch_url %>
+  </div>
+  <div class="field">
+    <%= f.label :date_watched %><br>
+    <%= f.date_select :date_watched %>
+  </div>
+  <div class="field">
+    <%= f.label :location_watched %><br>
+    <%= f.text_field :location_watched %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.text_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :watchlist_id %><br>
+    <%= f.text_field :watchlist_id %>
+  </div>
+  <div class="field">
+    <%= f.label :our_rating %><br>
+    <%= f.text_field :our_rating %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_artwork %><br>
+    <%= f.text_field :imdb_artwork %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_plot_summary %><br>
+    <%= f.text_area :imdb_plot_summary %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_rating %><br>
+    <%= f.text_field :imdb_rating %>
+  </div>
+  <div class="field">
+    <%= f.label :imdb_genre %><br>
+    <%= f.text_area :imdb_genre %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

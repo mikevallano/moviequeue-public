@@ -34,6 +34,8 @@ gem "awesome_print"
 # annotate models with or schema
 gem "annotate"
 
+gem "starter_generators"
+
 gem "font-awesome-rails"
 
 gem 'puma'
