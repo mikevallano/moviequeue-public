@@ -11,10 +11,10 @@
       <div class="panel panel-default">
        <div class="panel-body">
           <%= image_tag movie.imdb_artwork, class: "artwork" %>
-          (<%= movie.watchlist.list %>)
+          (<%= movie.watchlist.list if movie.watchlist != nil %>)
         </div><!--panel body-->
         <div class="panel-footer">
-          <%= movie.category.name %>: <%= link_to 'Watch', movie.watch_url %> | <%= link_to 'Preview', movie.watch_url %> | <%= link_to 'Mark as Watched', edit_movie_path(movie) %> | IMDB: <%= movie.imdb_rating %>
+          <%= movie.category.name if movie.category != nil %>: <%= link_to 'Watch', movie.watch_url if movie.watch_url != nil %> | <%= link_to 'Preview', movie.watch_url if movie.watch_url != nil %> | <%= link_to 'Mark as Watched', edit_movie_path(movie) %> | IMDB: <%= movie.imdb_rating if movie.imdb_rating != nil %>
         </div><!--panel-footer-->
         <div class="panel-footer">
         <%= link_to 'Show', movie %>
@@ -22,7 +22,7 @@
         <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
         </div><!--panel-footer-->
       </div><!--panel-->
-    </div><!--col-sm-3-->  
+    </div><!--col-sm-3-->
   <% end %>
 </div><!-- row -->
 

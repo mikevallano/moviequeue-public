@@ -24,10 +24,32 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = Movie.new(movie_params)
+    # get the movie title via form:
+    puts "movie title params: #{movie_params[:title]}"
+    @movie_title = movie_params[:title].gsub(" ","-")
+
+    # get data from the api based on movie title:
+    @content = open("http://www.omdbapi.com/?t=#{@movie_title}&y=&plot=short&r=json").read
+
+    # parse the results to a ruby hash
+    @results = JSON.parse(@content, symbolize_names: true)
+
+    # create the hash for the move params
+    @movie_info = { title: @results[:Title],
+      imdb_rating: @results[:imdbRating],
+      runtime: @results[:Runtime],
+      genre: @results[:Genre],
+      imdb_plot_summary: @results[:Plot] }
+
+    puts "movie info is: #{@movie_info}"
+
+      # assign hash to a new movie object
+    @movie = Movie.new(@movie_info)
+
+    # save new movie object to the database
 
     respond_to do |format|
-      if @movie.save
+      if @movie.save!
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else

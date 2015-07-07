@@ -1,6 +1,8 @@
 class Movie < ActiveRecord::Base
   belongs_to :category
   belongs_to :watchlist
+
+  validates :title, presence: true
 end
 
 # == Schema Information
@@ -25,6 +27,7 @@ end
 #  updated_at        :datetime         not null
 #  preview_link      :string
 #  runtime           :integer
+#  genre             :string
 #
 # Indexes
 #
