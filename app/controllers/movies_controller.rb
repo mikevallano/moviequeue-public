@@ -4,8 +4,17 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all
-  end
+    if params[:search]
+     @movies = Movie.where("title LIKE '%#{params[:search]}%'")
+     if @movies.length.zero?
+       flash[:notice] = 'Sorry, there are no matching titles for your search.'
+       @movies = Movie.all
+     end
+   else
+     @movies = Movie.all
+   end
+ end
+
 
   # GET /movies/1
   # GET /movies/1.json
