@@ -7,15 +7,10 @@
   <% @movies.each do |movie| %>
     <div class="col-sm-3">
       <div class="panel panel-default">
-      <div class="panel-heading">
-       <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="myModal_<%= movie.id%>">
-          Click
-        </button>
-       </div> <!-- panel-header -->
        <div class="panel-body">
-       <p><a href="#" data-toggle="modal" data-target="myModal_<%= movie.id %>">
-     <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>(<%= movie.watchlist.list if movie.watchlist != nil %>)
+       <a href="#" data-toggle="modal" data-target="myModal_<%= movie.id %>">
+     <%= image_tag movie.imdb_artwork, class: "artwork" %></a>
+     <p>(<%= movie.watchlist.list if movie.watchlist != nil %>)</p>
         </div><!--panel body-->
         <div class="panel-footer">
           <%= movie.category.name if movie.category != nil %>: <%= link_to 'Watch', movie.watch_url if movie.watch_url != nil %> | <%= link_to 'Preview', movie.watch_url if movie.watch_url != nil %> | <%= link_to 'Mark as Watched', edit_movie_path(movie) %> | IMDB: <%= movie.imdb_rating if movie.imdb_rating != nil %>

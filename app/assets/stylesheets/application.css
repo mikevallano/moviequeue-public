@@ -14,9 +14,13 @@
  *= require_self
  */
 
+
+/* Site Wide */
+
 .artwork {
   width: 100%;
   max-width: 200px;
+  max-height: 290px;
 }
 
  .stats {
@@ -24,6 +28,8 @@
   border-bottom: 1px solid gray;
   color: gray;
  }
+
+/* Movies Show Page */
 
  .watch-info {
   margin: 0 auto;
@@ -35,3 +41,12 @@
   font-size: 70%;
   font-style: italic;
  }
+
+ /* Movies Index Page */
+
+ .panel-body {
+  padding: 0px;
+  text-align: center;
+ }
+
+
