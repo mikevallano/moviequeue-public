@@ -34,12 +34,12 @@ class MoviesController < ApplicationController
     # parse the results to a ruby hash
     @results = JSON.parse(@content, symbolize_names: true)
 
-    # create the hash for the move params
+    # create the hash for the movie params
     @movie_info = { title: @results[:Title],
       imdb_rating: @results[:imdbRating],
       runtime: @results[:Runtime],
       genre: @results[:Genre],
-      imdb_plot_summary: @results[:Plot] }
+      imdb_plot_summary: @results[:Plot], watchlist_id: 3 }
 
     puts "movie info is: #{@movie_info}"
 
