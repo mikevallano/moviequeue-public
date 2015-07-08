@@ -2,7 +2,9 @@ class Movie < ActiveRecord::Base
   belongs_to :category
   belongs_to :watchlist
 
-  validates :title, presence: true
+  validates :title, :watchlist_id, presence: true
+  validates :title, presence: true, uniqueness: true
+
 end
 
 # == Schema Information
