@@ -7,7 +7,13 @@
 
   <div class="col-sm-9">
   <h2><%= @movie.title %> <span style="font-size: 40%;">(<%= @movie.watchlist.list if @movie.watch_url != nil %>)</span></h2>
-  <div class="pull-right"><%= link_to 'Edit', edit_movie_path(@movie) %></div>
+  <div class="pull-right"><%= link_to 'Edit', edit_movie_path(@movie) %> | 
+
+<%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+
+  </div>
   <p class= "stats">IMDB: <%= @movie.imdb_rating %> of 100 <%= @movie.imdb_genre %>  |  <%= @movie.watchlist.list if @movie.watch_url != nil %>: <%= @movie.our_rating if @movie.our_rating != nil%> of 5 <%= @movie.category.name if @movie.category != nil%></p>
     <div class="watch-info">
       <%= button_to "Watch", @movie.watch_url, class: "btn, btn-success" %>
