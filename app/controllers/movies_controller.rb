@@ -47,8 +47,10 @@ class MoviesController < ApplicationController
     @movie_info = { title: @results[:Title],
       imdb_rating: @results[:imdbRating],
       runtime: @results[:Runtime],
-      genre: @results[:Genre],
-      imdb_plot_summary: @results[:Plot], watchlist_id: 3 }
+      imdb_genre: @results[:Genre],
+      imdb_plot_summary: @results[:Plot], watchlist_id: 2, 
+      imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/", 
+      imdb_artwork: "artwork-blank.jpg" }
 
     puts "movie info is: #{@movie_info}"
 
