@@ -55,7 +55,7 @@ gem 'fog'
 #gem 'sunspot_rails'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
-gem 'honeybadger' #read updates at https://www.honeybadger.io/s/gem-upgrade
+#gem 'honeybadger' #read updates at https://www.honeybadger.io/s/gem-upgrade
 
 gem 'gibbon' #Please use Gibbon 0.4.6 if you need to use API 1.3.
               #If you're upgrading from <0.5.0 your code WILL break
