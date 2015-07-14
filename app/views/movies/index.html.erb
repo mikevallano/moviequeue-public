@@ -12,7 +12,7 @@
      <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
      <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
      
-      <div class="movie-footer <%= 'movie-footer-unwatched' if movie.watchstatus %>">
+      <div class="movie-footer <%= 'movie-footer-unwatched' unless movie.watchstatus %>">
         <h4><%= movie.watchlist.list if movie.watchlist != nil %></h4>
         
     </div><!-- movie-footer -->
@@ -33,7 +33,7 @@
           <div class="row">
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork" %>
-                <div class="watch-info <%= 'hidden' unless movie.has_watch_url? %>">
+                <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
                 <p>make this visible iff there is a watch_url</p>
                   <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
                   <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
@@ -47,10 +47,10 @@
               <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
                  <% if movie .watchstatus %>
                    <%= f.hidden_field :watchstatus, :value => false %>
-                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
                  <% else %>
                    <%= f.hidden_field :watchstatus, :value => true %>
-                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
                 

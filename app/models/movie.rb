@@ -5,11 +5,6 @@ class Movie < ActiveRecord::Base
   validates :title, :watchlist_id, presence: true
   validates :title, presence: true, uniqueness: true
 
-
-  def has_watch_url?
-    self.watch_url != "" || self.watch_url != nil
-  end
-
 end
 
 # == Schema Information
