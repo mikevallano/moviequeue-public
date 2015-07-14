@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707010357) do
+ActiveRecord::Schema.define(version: 20150714014111) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150707010357) do
     t.string   "preview_link"
     t.integer  "runtime"
     t.string   "genre"
+    t.boolean  "watchstatus"
   end
 
   add_index "movies", ["category_id"], name: "index_movies_on_category_id"

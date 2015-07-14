@@ -75,7 +75,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
+        format.html { redirect_to movies_url, notice: 'Movie was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit }
@@ -102,6 +102,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched, :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary, :imdb_rating, :imdb_genre, :preview_link, :runtime)
+      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched, :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary, :imdb_rating, :imdb_genre, :preview_link, :runtime, :watchstatus)
     end
 end

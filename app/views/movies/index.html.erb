@@ -12,7 +12,7 @@
      <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
      <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
      
-      <div class="movie-footer">
+      <div class="movie-footer <%= 'movie-footer-unwatched' unless movie.watchstatus %>">
         <h4><%= movie.watchlist.list if movie.watchlist != nil %></h4>
         
     </div><!-- movie-footer -->
@@ -33,23 +33,34 @@
           <div class="row">
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork" %>
-              <p><%= link_to "IMDB", movie.imdb_url %> | <%= link_to "Watch", movie.watch_url %></p>
+                <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
+                  <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
+                  <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
+                </div><!--watch-info-->
+
+
               </div><!--col-sm-3-->
 
               <div class="col-sm-9">
-              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watch_url != nil %>)</span></h2>
-              <div class="pull-right"><%= link_to 'Edit', edit_movie_path(movie) %> | 
-
-            <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-
-
-              </div>
+              <div class="pull-right">
+              <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
+                 <% if movie .watchstatus %>
+                   <%= f.hidden_field :watchstatus, :value => false %>
+                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+                 <% else %>
+                   <%= f.hidden_field :watchstatus, :value => true %>
+                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+                 <% end %>  <!-- if -->
+               <% end %> <!-- do -->
+                
+              </div><!--pull-right-->
+              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.list != nil %>)</span></h2>
+              <div class="pull-right">
+                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;  
+                <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
+              </div><!--pull-right-->
               <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watch_url != nil %>: <%= movie.our_rating if movie.our_rating != nil%> of 5 <%= movie.category.name if movie.category != nil%></p>
-                <div class="watch-info">
-                  <%= button_to "Watch", movie.watch_url, class: "btn, btn-success" %>
-                  <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
-                </div><!--watch-info-->
+                
 
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p><strong>Our Notes:</strong> <%= movie.notes %></p>
@@ -61,8 +72,9 @@
             
           </div>
           <div class="modal-footer">
+          
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            
           </div> <!-- modal-footer -->
         </div> <!-- modal-content -->
       </div> <!-- modal-dialog -->
