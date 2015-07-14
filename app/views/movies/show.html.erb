@@ -2,20 +2,23 @@
 
   <div class="col-sm-3">
   <%= image_tag @movie.imdb_artwork, class: "artwork" %>
-  <p><%= link_to "IMDB", @movie.imdb_url %> | <%= link_to "Watch", @movie.watch_url %></p>
+  <div class="watch-info <%= 'hidden' unless @movie.watch_url.present? %>">
+    <%= button_to "Watch Now", @movie.watch_url, class: "btn btn-primary btn-xs" %>
+    <p> Watched on <%= @movie.date_watched %> at <%= @movie.location_watched %> </p>
+  </div><!--watch-info-->
 
   <!-- Watch Button boolean functionality -->
-    <p><strong>Watch Status:</strong>
+    
          <%= form_for(@movie, url: movie_path(@movie), :html => {class: "form-inline"}) do |f| %>
            <% if @movie .watchstatus %>
              <%= f.hidden_field :watchstatus, :value => false %>
-             <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+             <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
            <% else %>
              <%= f.hidden_field :watchstatus, :value => true %>
-             <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+             <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
            <% end %>  <!-- if -->
          <% end %> <!-- do -->
-         </p>
+        
 
 
   </div><!--col-sm-3-->
