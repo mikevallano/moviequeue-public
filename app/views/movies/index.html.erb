@@ -13,7 +13,9 @@
      <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
      
       <div class="movie-footer <%= 'movie-footer-unwatched' unless movie.watchstatus %>">
-        <h4><%= movie.watchlist.list if movie.watchlist != nil %></h4>
+
+      <!--  PRETTY SURE THERE'S A PROBLEM HERE-->
+        <h4><%= movie.watchlist.list if movie.watch_url != nil %></h4>
         
     </div><!-- movie-footer -->
   </div><!-- movie-holder -->
