@@ -34,7 +34,6 @@
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork" %>
                 <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
-                <p>make this visible iff there is a watch_url</p>
                   <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
                   <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
                 </div><!--watch-info-->
