@@ -34,6 +34,18 @@
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork" %>
               <p><%= link_to "IMDB", movie.imdb_url %> | <%= link_to "Watch", movie.watch_url %></p>
+
+              <!-- Watch Button boolean functionality -->
+               <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
+                 <% if movie .watchstatus %>
+                   <%= f.hidden_field :watchstatus, :value => false %>
+                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+                 <% else %>
+                   <%= f.hidden_field :watchstatus, :value => true %>
+                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+                 <% end %>  <!-- if -->
+               <% end %> <!-- do -->
+
               </div><!--col-sm-3-->
 
               <div class="col-sm-9">

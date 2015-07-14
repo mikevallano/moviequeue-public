@@ -1,11 +1,26 @@
 <div class="row">
 
-  <div class="module-left">
+  <div class="col-sm-3">
   <%= image_tag @movie.imdb_artwork, class: "artwork" %>
   <p><%= link_to "IMDB", @movie.imdb_url %> | <%= link_to "Watch", @movie.watch_url %></p>
-  </div><!--module-left-->
 
-  <div class="module-right">
+  <!-- Watch Button boolean functionality -->
+    <p><strong>Watch Status:</strong>
+         <%= form_for(@movie, url: movie_path(@movie), :html => {class: "form-inline"}) do |f| %>
+           <% if @movie .watchstatus %>
+             <%= f.hidden_field :watchstatus, :value => false %>
+             <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+           <% else %>
+             <%= f.hidden_field :watchstatus, :value => true %>
+             <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+           <% end %>  <!-- if -->
+         <% end %> <!-- do -->
+         </p>
+
+
+  </div><!--col-sm-3-->
+
+  <div class="col-sm-9">
   <h2><%= @movie.title %> <span style="font-size: 40%;">(<%= @movie.watchlist.list if @movie.watch_url != nil %>)</span></h2>
   <div class="pull-right"><%= link_to 'Edit', edit_movie_path(@movie) %> | 
 
@@ -23,7 +38,7 @@
   <p><strong>Plot Summary:</strong> <%= @movie.imdb_plot_summary %></p>
   <p><strong>Our Notes:</strong> <%= @movie.notes %></p>
 
-  </div><!--module-right-->
+  </div><!--col-sm-9-->
 </div><!--row-->
 
 
