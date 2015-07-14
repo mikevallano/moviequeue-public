@@ -1,11 +1,11 @@
 <div class="row">
 
-  <div class="col-sm-3">
+  <div class="module-left">
   <%= image_tag @movie.imdb_artwork, class: "artwork" %>
   <p><%= link_to "IMDB", @movie.imdb_url %> | <%= link_to "Watch", @movie.watch_url %></p>
-  </div><!--col-sm-3-->
+  </div><!--module-left-->
 
-  <div class="col-sm-9">
+  <div class="module-right">
   <h2><%= @movie.title %> <span style="font-size: 40%;">(<%= @movie.watchlist.list if @movie.watch_url != nil %>)</span></h2>
   <div class="pull-right"><%= link_to 'Edit', edit_movie_path(@movie) %> | 
 
@@ -23,7 +23,7 @@
   <p><strong>Plot Summary:</strong> <%= @movie.imdb_plot_summary %></p>
   <p><strong>Our Notes:</strong> <%= @movie.notes %></p>
 
-  </div><!--col-sm-9-->
+  </div><!--module-right-->
 </div><!--row-->
 
 
