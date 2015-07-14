@@ -33,7 +33,7 @@
           <div class="row">
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork" %>
-                <div class="watch-info">
+                <div class="watch-info <%= 'hidden' unless movie.has_watch_url? %>">
                 <p>make this visible iff there is a watch_url</p>
                   <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
                   <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
@@ -57,8 +57,8 @@
               </div><!--pull-right-->
               <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.list != nil %>)</span></h2>
               <div class="pull-right">
-                <%= link_to 'Edit', edit_movie_path(movie) %> | 
-                <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;  
+                <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
               <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watch_url != nil %>: <%= movie.our_rating if movie.our_rating != nil%> of 5 <%= movie.category.name if movie.category != nil%></p>
                 
@@ -73,10 +73,7 @@
             
           </div>
           <div class="modal-footer">
-          <div class="pull-right">
-                <%= link_to 'Edit', edit_movie_path(movie), class: "fa fa-pencil" %> | 
-                <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-pencil" %>
-              </div><!--pull-right-->
+          
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             
           </div> <!-- modal-footer -->
