@@ -30,6 +30,7 @@ end
 #  preview_link      :string
 #  runtime           :integer
 #  genre             :string
+#  watchstatus       :boolean
 #
 # Indexes
 #
