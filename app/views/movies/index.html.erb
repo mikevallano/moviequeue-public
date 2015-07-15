@@ -1,5 +1,5 @@
 <div class="row">
-  <h1>All Movies</h1>  
+  <h1>All Movies</h1>
 </div><!-- row -->
 
 <div class="row">
@@ -11,15 +11,14 @@
      </div><!-- movie-title -->
      <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
      <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-     
+
       <div class="movie-footer <%= 'movie-footer-unwatched' unless movie.watchstatus %>">
 
-      <!--  PRETTY SURE THERE'S A PROBLEM HERE-->
-        <h4><%= movie.watchlist.list if movie.watch_url != nil %></h4>
-        
+        <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
+
     </div><!-- movie-footer -->
   </div><!-- movie-holder -->
-        
+
 
     <!-- Modal -->
     <div class="modal fade" id="myModal_<%= movie.id %>" tabinde="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -54,15 +53,15 @@
                    <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
-                
+
               </div><!--pull-right-->
-              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.list != nil %>)</span></h2>
+              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
               <div class="pull-right">
-                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;  
+                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
               <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watch_url != nil %>: <%= movie.our_rating if movie.our_rating != nil%> of 5 <%= movie.category.name if movie.category != nil%></p>
-                
+
 
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p><strong>Our Notes:</strong> <%= movie.notes %></p>
@@ -71,12 +70,12 @@
             </div><!--row-->
 
 
-            
+
           </div>
           <div class="modal-footer">
-          
+
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            
+
           </div> <!-- modal-footer -->
         </div> <!-- modal-content -->
       </div> <!-- modal-dialog -->
