@@ -60,7 +60,7 @@
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
-              <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watch_url != nil %>: <%= movie.our_rating if movie.our_rating != nil%> of 5 <%= movie.category.name if movie.category != nil%></p>
+              <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 <%= movie.category.name if movie.category.present? %></p>
 
 
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
