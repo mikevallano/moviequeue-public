@@ -48,8 +48,8 @@ class MoviesController < ApplicationController
       imdb_rating: @results[:imdbRating],
       runtime: @results[:Runtime],
       imdb_genre: @results[:Genre],
-      imdb_plot_summary: @results[:Plot], watchlist_id: 2, 
-      imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/", 
+      imdb_plot_summary: @results[:Plot], watchlist_id: 2,
+      imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
       imdb_artwork: "artwork-blank.jpg" }
 
     puts "movie info is: #{@movie_info}"
@@ -61,7 +61,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save!
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
+        format.html { redirect_to movies_url, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new }
