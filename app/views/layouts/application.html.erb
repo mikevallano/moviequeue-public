@@ -74,8 +74,17 @@
           <% end %>
         </form>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">[placeholder for sign-in]</a></li>
+        <ul class="nav navbar-nav navbar-form navbar-right">
+
+          <!--User Login box-->
+          <% if user_signed_in? %>
+          <%#= current_user.email %>
+          <li><%= button_to "Sign Out (#{current_user.email})", destroy_user_session_path, method: :delete, class: "btn btn-default btn-xs" %></li>
+          <% else %>
+          <li><%= link_to "Sign In", user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
+
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
