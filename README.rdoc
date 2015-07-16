@@ -1,5 +1,5 @@
 == README
 
-This is an app we're working on as our own private movie inventory and watchlist. Our goal is to create something where we can put movies we'd like to see in a queue and then mark off movies we've seen so we can revisit that data later. 
+This is an app we're working on as our own private movie inventory and watchlist. Our goal is to create something where we can put movies we'd like to see in a queue and then mark off movies we've seen so we can revisit that data later.
 
-We'll be using IMDB's API to populate any existing movie data (ratings, artwork, etc.)
+We'll be using http://www.omdbapi.com/ to populate any existing movie data (ratings, genre, artwork, etc.)
