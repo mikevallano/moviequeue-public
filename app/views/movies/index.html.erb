@@ -45,21 +45,22 @@
               <div class="pull-right">
               <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
                  <% if movie .watchstatus %>
+                 <p class="movie-status-watched">Watched</p>
                    <%= f.hidden_field :watchstatus, :value => false %>
-                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+                   <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs" %>
                  <% else %>
+                 <p class="movie-status-unwatched">Unwatched</p>
                    <%= f.hidden_field :watchstatus, :value => true %>
-                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+                   <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs" %>
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
-
               </div><!--pull-right-->
               <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
-              <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 <%= movie.category.name if movie.category.present? %></p>
+              <p class= "stats"><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 <%= movie.category.name if movie.category.present? %></p>
 
 
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
