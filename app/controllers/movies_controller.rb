@@ -50,7 +50,7 @@ class MoviesController < ApplicationController
       imdb_genre: @results[:Genre],
       imdb_plot_summary: @results[:Plot], watchlist_id: 2,
       imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
-      imdb_artwork: "artwork-blank.jpg" }
+      imdb_artwork: @results[:Poster]}
 
     puts "movie info is: #{@movie_info}"
 
