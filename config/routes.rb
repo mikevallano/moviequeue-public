@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :movies
   resources :categories
   resources :watchlists
+  get "nocansee", to: "static_pages#nocansee"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
