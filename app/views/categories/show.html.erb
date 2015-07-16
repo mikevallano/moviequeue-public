@@ -1,9 +1,86 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p class="pull-right"><%= link_to "All Movies", movies_path %></p>
+  <h1>Category: <%= @category.name %></h1>
+</div><!-- row -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<div class="row">
+  <% @category.movies.order("created_at").reverse.each do |movie| %>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+    <div class="movie-holder">
+    <div class="movie-title">
+       <p><%= movie.title %></p>
+     </div><!-- movie-title -->
+     <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
+     <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
+
+      <div class="movie-footer <%= 'movie-footer-unwatched' unless movie.watchstatus %>">
+
+        <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
+
+    </div><!-- movie-footer -->
+  </div><!-- movie-holder -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_<%= movie.id %>" tabinde="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><%= movie.title %></h4>
+          </div> --> <!-- modal header -->
+          <div class="modal-body">
+
+
+          <div class="row">
+              <div class="col-sm-3">
+              <%= image_tag movie.imdb_artwork, class: "artwork movie-holder" %>
+                <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
+                  <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
+                  <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
+                </div><!--watch-info-->
+
+
+              </div><!--col-sm-3-->
+
+              <div class="col-sm-9">
+              <div class="pull-right">
+              <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
+                 <% if movie .watchstatus %>
+                   <%= f.hidden_field :watchstatus, :value => false %>
+                   <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
+                 <% else %>
+                   <%= f.hidden_field :watchstatus, :value => true %>
+                   <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
+                 <% end %>  <!-- if -->
+               <% end %> <!-- do -->
+
+              </div><!--pull-right-->
+              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
+              <div class="pull-right">
+                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;
+                <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-trash-o" %>
+              </div><!--pull-right-->
+              <p class= "stats">IMDB: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 <%= movie.category.name if movie.category.present? %></p>
+
+
+              <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
+              <p><strong>Our Notes:</strong> <%= movie.notes %></p>
+
+              </div><!--col-sm-9-->
+            </div><!--row-->
+
+
+
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+          </div> <!-- modal-footer -->
+        </div> <!-- modal-content -->
+      </div> <!-- modal-dialog -->
+    </div> <!-- modal fade-->
+
+  <% end %>
+</div><!-- row -->
