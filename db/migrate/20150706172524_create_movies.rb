@@ -7,7 +7,7 @@ class CreateMovies < ActiveRecord::Migration
       t.date :date_watched
       t.string :location_watched
       t.references :category, index: true, foreign_key: true
-      t.references :watchlist, index: true, foreign_key: true, :default => 3
+      t.references :watchlist, index: true, foreign_key: true
       t.float :our_rating
       t.text :notes
       t.string :imdb_artwork
