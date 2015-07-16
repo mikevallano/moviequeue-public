@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
       runtime: @results[:Runtime],
       imdb_genre: @results[:Genre],
       imdb_plot_summary: @results[:Plot], 
-      watchlist_id: 2,
+      watchlist_id: 3,
       imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
       imdb_artwork: @results[:Poster]}
 
