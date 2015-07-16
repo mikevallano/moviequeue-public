@@ -4,7 +4,7 @@
 </div><!-- row -->
 
 <div class="row">
-  <% @watchlist.movies.order("created_at").reverse.each do |movie| %>
+  <% @watchlist.movies.order("watchstatus").each do |movie| %>
 
     <div class="movie-holder">
     <div class="movie-title">

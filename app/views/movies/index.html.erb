@@ -3,7 +3,7 @@
 </div><!-- row -->
 
 <div class="row">
-  <% @movies.order("created_at").reverse.each do |movie| %>
+  <% @movies.order("watchstatus").each do |movie| %>
     <div class="movie-holder">
     <div class="movie-title">
        <p><%= movie.title %></p>
