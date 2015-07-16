@@ -51,7 +51,6 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Edit Watchlists", watchlists_path %></li>
               <li class="divider"></li>
-              <li>placeholder</li>
               <% Watchlist.all.each do |watchlist| %>
                <li><%= link_to watchlist.list.capitalize, watchlist_path(id: watchlist.id) %></li>
               <% end %>
