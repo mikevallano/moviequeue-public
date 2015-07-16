@@ -1,6 +1,8 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
+  before_filter :auth_user
+
   # GET /movies
   # GET /movies.json
   def index
