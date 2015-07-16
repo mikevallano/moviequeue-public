@@ -57,12 +57,14 @@
               </div><!--pull-right-->
               <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
               <div class="pull-right">
-                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>  &nbsp; &nbsp;
+                <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>&nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
-              <p class= "stats"><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 100 <%= movie.imdb_genre %>  |  <%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 <%= movie.category.name if movie.category.present? %></p>
-
-
+              <div class="stats">
+                <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 100 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
+                <p><%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 | <%= movie.category.name if movie.category.present? %></p>  
+              </div><!-- stats -->
+              
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p><strong>Our Notes:</strong> <%= movie.notes %></p>
 
