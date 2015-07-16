@@ -36,8 +36,16 @@
   z-index: 2;
   position: relative;
   margin-bottom: 5%;
-/*  width: 215px;
-  height: 319px;*/
+}
+
+.artwork-watched {
+  opacity: 0.4;
+  background-color: white;
+  width: 123px;
+  height: 183px;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 5%;
 }
 
 .movie-title {
@@ -48,7 +56,7 @@
 
 }
 
-.movie-footer {
+.movie-footer-watched {
   height: 40px;
   color: white;
   background-color: rgba(0, 0, 0, .7);
