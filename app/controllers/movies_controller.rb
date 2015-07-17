@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    # check if we want to bypass the api
+    # check if we want to bypass the API
     if movie_params[:bypassapi] == "Bypass API"
       @movie_info = movie_params
 
@@ -49,6 +49,7 @@ class MoviesController < ApplicationController
       # parse the results to a ruby hash
       @results = JSON.parse(@content, symbolize_names: true)
 
+      # check if API has an error. if so, use movie_params
       if @results[:Error] == "Movie not found!"
         @movie_info = movie_params
 
