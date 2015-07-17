@@ -16,8 +16,10 @@
     <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label "bypass api?" %><br>
-    <%= f.text_field :bypassapi, class: "form-control" %>
+    <select name="movie[bypassapi]">
+      <option value="Use API">Use API</option>
+      <option value="Bypass API">Bypass API</option>
+    </select>
   </div>
   <div class="field">
     <%= f.label "Who Should Watch This?*" %><br>

@@ -36,7 +36,7 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     # check if we want to bypass the api
-    if movie_params[:bypassapi].present?
+    if movie_params[:bypassapi] == "Bypass API"
       @movie_info = movie_params
 
     else
