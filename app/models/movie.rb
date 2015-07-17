@@ -32,9 +32,8 @@ end
 #  updated_at        :datetime         not null
 #  preview_link      :string
 #  runtime           :integer
-#  genre             :string
-#  watchstatus       :boolean
-#  bypassapi         :string
+#  been_watched      :boolean
+#  year_released     :string
 #
 # Indexes
 #

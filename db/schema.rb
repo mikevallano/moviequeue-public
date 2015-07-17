@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717150136) do
+ActiveRecord::Schema.define(version: 20150717214602) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -37,9 +37,8 @@ ActiveRecord::Schema.define(version: 20150717150136) do
     t.datetime "updated_at",        null: false
     t.string   "preview_link"
     t.integer  "runtime"
-    t.string   "genre"
-    t.boolean  "watchstatus"
-    t.string   "bypassapi"
+    t.boolean  "been_watched"
+    t.string   "year_released"
   end
 
   add_index "movies", ["category_id"], name: "index_movies_on_category_id"
