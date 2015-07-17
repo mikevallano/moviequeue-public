@@ -39,6 +39,8 @@ gem "font-awesome-rails"
 
 gem 'stamp'
 
+gem 'will_paginate', '~> 3.0.6'
+
 gem 'puma'
 gem 'yui-compressor'
 gem 'bootstrap-sass'

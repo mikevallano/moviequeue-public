@@ -24,13 +24,19 @@
     <%= f.collection_select :category_id, Category.all.order("name"), :id, :name,  {prompt: "Enter a Category"}, {class: "form-control"} %>
   </div>
   <div class="field">
+    <%= f.label "Check the box if you've already watched it:" %> <%= f.check_box :watchstatus %>
+  </div>
+  <div class="field">
     <%= f.label "Enter a link to where we can watch it:" %><br>
     <%= f.text_field :watch_url, placeholder: "http://...", class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label "Check the box if you've already watched it:" %> <%= f.check_box :watchstatus %>
+    <%= f.label "Enter a link to the preview:" %><br>
+    <%= f.text_field :preview_link, placeholder: "http://...", class: "form-control" %>
   </div>
+  
   <%= image_tag @movie.imdb_artwork, class: "artwork" if @movie.imdb_artwork.present?  %>
+  <!-- TODO: insert preview link back into the form-->
   <div class="field">
     <%= f.label "Add Link to Movie Cover Image" %><br>
     <%= f.text_field :imdb_artwork, placeholder: "http://...", class: "form-control" %>
