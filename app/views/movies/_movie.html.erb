@@ -2,12 +2,27 @@
     <div class="modal fade" id="myModal_<%= movie.id %>" tabinde="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel"><%= movie.title %></h4>
-          </div> --> <!-- modal header -->
-          <div class="modal-body">
 
+          <div class="modal-header">
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+            <div class="pull-right">
+              <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
+                 <% if movie .watchstatus %>
+                 <p class="movie-status-watched">Watched</p>
+                   <%= f.hidden_field :watchstatus, :value => false %>
+                   <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs" %>
+                 <% else %>
+                 <p class="movie-status-unwatched">Unwatched</p>
+                   <%= f.hidden_field :watchstatus, :value => true %>
+                   <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs" %>
+                 <% end %>  <!-- if -->
+               <% end %> <!-- do -->
+              </div><!--pull-right-->
+            <h4 class="modal-title" id="myModalLabel">A <%= movie.category.name if movie.category.present? %> for <%= movie.watchlist.list %></h4>
+            
+          </div> <!-- modal header -->
+
+          <div class="modal-body">
           <div class="row">
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork movie-holder" %>
@@ -23,19 +38,7 @@
               </div><!--col-sm-3-->
 
               <div class="col-sm-9">
-              <div class="pull-right">
-              <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
-                 <% if movie .watchstatus %>
-                 <p class="movie-status-watched">Watched</p>
-                   <%= f.hidden_field :watchstatus, :value => false %>
-                   <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs" %>
-                 <% else %>
-                 <p class="movie-status-unwatched">Unwatched</p>
-                   <%= f.hidden_field :watchstatus, :value => true %>
-                   <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs" %>
-                 <% end %>  <!-- if -->
-               <% end %> <!-- do -->
-              </div><!--pull-right-->
+              
               <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>&nbsp;
