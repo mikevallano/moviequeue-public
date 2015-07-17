@@ -40,7 +40,7 @@
               </div><!--pull-right-->
               <div class="stats">
                 <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
-                <p><%= movie.watchlist.list if movie.watchlist.present? %>: <%= movie.our_rating if movie.our_rating.present? %> of 5 | <%= movie.category.name if movie.category.present? %></p>  
+                <p>Our Rating: <%= movie.our_rating if movie.our_rating.present? %> | Category: <%= movie.category.name if movie.category.present? %></p>  
               </div><!-- stats -->
               
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
