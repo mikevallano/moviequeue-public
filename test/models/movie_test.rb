@@ -30,6 +30,7 @@ end
 #  runtime           :integer
 #  genre             :string
 #  watchstatus       :boolean
+#  bypassapi         :string
 #
 # Indexes
 #

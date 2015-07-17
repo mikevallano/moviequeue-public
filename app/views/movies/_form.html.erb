@@ -16,6 +16,10 @@
     <%= f.text_field :title, class: "form-control" %>
   </div>
   <div class="field">
+    <%= f.label "bypass api?" %><br>
+    <%= f.text_field :bypassapi, class: "form-control" %>
+  </div>
+  <div class="field">
     <%= f.label "Who Should Watch This?*" %><br>
     <%= f.collection_select :watchlist_id, Watchlist.all.order("id").reverse, :id, :list, {prompt: "Please Select"}, {class: "form-control"} %>
   </div>
@@ -39,7 +43,7 @@
     <%= f.label "Add Link to Movie Cover Image" %><br>
     <%= f.text_field :imdb_artwork, placeholder: "http://...", class: "form-control" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :date_watched %><br>
     <%= f.date_select :date_watched, class: "form-control" %>
