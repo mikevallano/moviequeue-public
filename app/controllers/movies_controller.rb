@@ -36,7 +36,6 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     # get the movie title via form:
-    puts "movie title params: #{movie_params[:title]}"
     @movie_title = movie_params[:title].gsub(" ","-")
 
     # get data from the api based on movie title:
@@ -49,23 +48,21 @@ class MoviesController < ApplicationController
     @movie_info = { title: @results[:Title],
       imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
       watch_url: movie_params[:watch_url],
-      #date_watched: movie_params[:date_watched],
+      date_watched: movie_params[:date_watched],
       location_watched: movie_params[:location_watched],
       category_id: movie_params[:category_id],
       watchlist_id: movie_params[:watchlist_id],
       our_rating: movie_params[:our_rating],
       preview_link: movie_params[:preview_link],
       watchstatus: movie_params[:watchstatus],
-      #notes: @results[:notes], 
-      imdb_artwork: @results[:Poster], 
+      notes: movie_params[:notes],
+      imdb_artwork: @results[:Poster].gsub("N/A", ""),
       imdb_plot_summary: @results[:Plot],
       imdb_rating: @results[:imdbRating],
       imdb_genre: @results[:Genre],
       runtime: @results[:Runtime]}
 
-    puts "movie info is: #{@movie_info}"
-
-      # assign hash to a new movie object
+    # assign hash to a new movie object
     @movie = Movie.new(@movie_info)
 
     # save new movie object to the database

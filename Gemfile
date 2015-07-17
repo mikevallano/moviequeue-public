@@ -3,7 +3,6 @@ ruby '2.2.1'
 
 # Heroku
 gem 'pg'
-gem 'rails_12factor'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -67,6 +66,10 @@ gem 'pry'
 gem 'jquery-ui-rails'
 gem 'figaro'
 gem 'geocoder'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development do
   gem "quiet_assets" # quiet those assets down
