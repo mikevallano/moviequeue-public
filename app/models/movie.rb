@@ -5,6 +5,9 @@ class Movie < ActiveRecord::Base
   validates :title, :watchlist_id, presence: true
   validates :title, presence: true, uniqueness: true
 
+  # will_paginate
+  #self.per_page = 10
+
 end
 
 # == Schema Information

@@ -12,8 +12,11 @@
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork movie-holder" %>
                 <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
-                  <%= button_to "Watch Now", movie.watch_url, class: "btn btn-primary btn-xs" %>
-                  <p> Watched on <%= movie.date_watched %> at <%= movie.location_watched %> </p>
+                  <%= button_to "Watch Movie", movie.watch_url, class: "btn btn-primary btn-s" %>
+
+                </div><!--watch-info-->
+                <div style="margin-top: 5%;" class="watch-info <%= 'hidden' unless movie.preview_link.present? %>">
+                  <%= button_to "Watch Preview", movie.preview_link, class: "btn btn-danger btn-xs" %>
                 </div><!--watch-info-->
 
 
@@ -44,7 +47,10 @@
               </div><!-- stats -->
               
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
-              <p><strong>Our Notes:</strong> <%= movie.notes %></p>
+              <p <%= 'hidden' unless movie.notes.present? %>><strong>Notes:</strong> <%= movie.notes %></p>
+              <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched %></p>
+              <p <%= 'hidden' unless movie.location_watched.present? %>><strong>Watched at:</strong> <%= movie.location_watched %></p>
+                
 
               </div><!--col-sm-9-->
             </div><!--row-->
