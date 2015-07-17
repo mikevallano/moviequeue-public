@@ -32,7 +32,7 @@
 
 
   </div>
-  <p class= "stats">IMDB: <%= @movie.imdb_rating %> of 100 <%= @movie.imdb_genre %>  |  <%= @movie.watchlist.list if @movie.watch_url != nil %>: <%= @movie.our_rating if @movie.our_rating != nil%> of 5 <%= @movie.category.name if @movie.category != nil%></p>
+  <p class= "stats">IMDB: <%= @movie.imdb_rating %> of 10 <%= @movie.imdb_genre %>  |  <%= @movie.watchlist.list if @movie.watch_url != nil %>: <%= @movie.our_rating if @movie.our_rating != nil%> of 5 <%= @movie.category.name if @movie.category != nil%></p>
     <div class="watch-info">
       <%= button_to "Watch", @movie.watch_url, class: "btn, btn-success" %>
       <p> Watched on <%= @movie.date_watched %> at <%= @movie.location_watched %> </p>
