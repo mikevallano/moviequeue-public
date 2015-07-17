@@ -54,11 +54,15 @@ class MoviesController < ApplicationController
         @movie_info = movie_params
 
       else
+        # parse the date
+        @parsed_date = Date.new(movie_params["date_watched(1i)"].to_i,
+          movie_params["date_watched(2i)"].to_i, movie_params["date_watched(3i)"].to_i) unless ! movie_params["date_watched(1i)"].present?
+
         # create the hash for the movie params
         @movie_info = { title: @results[:Title],
           imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
           watch_url: movie_params[:watch_url],
-          date_watched: movie_params[:date_watched],
+          date_watched: @parsed_date,
           location_watched: movie_params[:location_watched],
           category_id: movie_params[:category_id],
           watchlist_id: movie_params[:watchlist_id],
