@@ -35,38 +35,48 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    # get the movie title via form:
-    @movie_title = movie_params[:title].gsub(" ","-")
+    # check if we want to bypass the api
+    if movie_params[:bypassapi] == "Bypass API"
+      @movie_info = movie_params
 
-    # get data from the api based on movie title:
-    @content = open("http://www.omdbapi.com/?t=#{@movie_title}&y=&plot=short&r=json").read
+    else
+      # use the API and get the movie title via form
+      @movie_title = movie_params[:title].gsub(" ","-")
 
-    # parse the results to a ruby hash
-    @results = JSON.parse(@content, symbolize_names: true)
+      # get data from the api based on movie title
+      @content = open("http://www.omdbapi.com/?t=#{@movie_title}&y=&plot=short&r=json").read
 
-    # create the hash for the movie params
-    @movie_info = { title: @results[:Title],
-      imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
-      watch_url: movie_params[:watch_url],
-      date_watched: movie_params[:date_watched],
-      location_watched: movie_params[:location_watched],
-      category_id: movie_params[:category_id],
-      watchlist_id: movie_params[:watchlist_id],
-      our_rating: movie_params[:our_rating],
-      preview_link: movie_params[:preview_link],
-      watchstatus: movie_params[:watchstatus],
-      notes: movie_params[:notes],
-      imdb_artwork: @results[:Poster].gsub("N/A", ""),
-      imdb_plot_summary: @results[:Plot],
-      imdb_rating: @results[:imdbRating],
-      imdb_genre: @results[:Genre],
-      runtime: @results[:Runtime]}
+      # parse the results to a ruby hash
+      @results = JSON.parse(@content, symbolize_names: true)
+
+      if @results[:Error] == "Movie not found!"
+        @movie_info = movie_params
+
+      else
+        # create the hash for the movie params
+        @movie_info = { title: @results[:Title],
+          imdb_url: "http://www.imdb.com/title/#{@results[:imdbID]}/",
+          watch_url: movie_params[:watch_url],
+          date_watched: movie_params[:date_watched],
+          location_watched: movie_params[:location_watched],
+          category_id: movie_params[:category_id],
+          watchlist_id: movie_params[:watchlist_id],
+          our_rating: movie_params[:our_rating],
+          preview_link: movie_params[:preview_link],
+          watchstatus: movie_params[:watchstatus],
+          notes: movie_params[:notes],
+          imdb_artwork: @results[:Poster].gsub("N/A", ""),
+          imdb_plot_summary: @results[:Plot],
+          imdb_rating: @results[:imdbRating],
+          imdb_genre: @results[:Genre],
+          runtime: @results[:Runtime]}
+      end #end of if/else based on API error
+    end #end of if/else on whether or not to bypass the API
 
     # assign hash to a new movie object
     @movie = Movie.new(@movie_info)
 
     # save new movie object to the database
-
     respond_to do |format|
       if @movie.save!
         format.html { redirect_to movies_url, notice: 'Movie was successfully created.' }
@@ -110,6 +120,8 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched, :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary, :imdb_rating, :imdb_genre, :preview_link, :runtime, :watchstatus)
+      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched,
+        :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary,
+        :imdb_rating, :imdb_genre, :preview_link, :runtime, :watchstatus, :bypassapi)
     end
 end
