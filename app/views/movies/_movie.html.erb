@@ -7,13 +7,13 @@
             <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
             <div class="pull-right">
               <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
-                 <% if movie .watchstatus %>
+                 <% if movie .been_watched %>
                  <p class="movie-status-watched">Watched</p>
-                   <%= f.hidden_field :watchstatus, :value => false %>
+                   <%= f.hidden_field :been_watched, :value => false %>
                    <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs" %>
                  <% else %>
                  <p class="movie-status-unwatched">Unwatched</p>
-                   <%= f.hidden_field :watchstatus, :value => true %>
+                   <%= f.hidden_field :been_watched, :value => true %>
                    <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs" %>
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
@@ -39,7 +39,7 @@
 
               <div class="col-sm-9">
               
-              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.watchlist.list if movie.watchlist.present? %>)</span></h2>
+              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>&nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o" %>

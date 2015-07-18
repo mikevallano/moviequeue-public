@@ -6,14 +6,14 @@
   <h2>In the Queue...</h2>
   <% @movies.order("created_at DESC").each do |movie| %>
 
-    <% unless movie.watchstatus %>
+    <% unless movie.been_watched %>
       <div class="movie-holder">
         <div class="movie-title">
            <p><%= movie.title %></p>
          </div><!-- movie-title -->
          <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
          <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-          <div class="movie-footer-unwatched <%= 'hidden' if movie.watchstatus %>">
+          <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
             <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
           </div><!-- movie-footer -->
         </div><!-- movie-holder -->
@@ -29,14 +29,14 @@
   <h2>Recently Watched...</h2>
   <% @movies.order("updated_at DESC").each do |movie| %>
 
-    <% if movie.watchstatus %>
+    <% if movie.been_watched %>
       <div class="movie-holder">
       <div class="movie-title">
          <p><%= movie.title %></p>
        </div><!-- movie-title -->
        <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
        <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-        <div class="movie-footer-unwatched <%= 'hidden' if movie.watchstatus %>">
+        <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
           <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
         </div><!-- movie-footer -->
       </div><!-- movie-holder -->

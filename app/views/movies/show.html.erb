@@ -10,11 +10,11 @@
   <!-- Watch Button boolean functionality -->
     
          <%= form_for(@movie, url: movie_path(@movie), :html => {class: "form-inline"}) do |f| %>
-           <% if @movie .watchstatus %>
-             <%= f.hidden_field :watchstatus, :value => false %>
+           <% if @movie .been_watched %>
+             <%= f.hidden_field :been_watched, :value => false %>
              <%= f.submit "Watched", class: "btn btn-default btn-xs" %>
            <% else %>
-             <%= f.hidden_field :watchstatus, :value => true %>
+             <%= f.hidden_field :been_watched, :value => true %>
              <%= f.submit "Unwatched", class: "btn btn-success btn-xs" %>
            <% end %>  <!-- if -->
          <% end %> <!-- do -->
