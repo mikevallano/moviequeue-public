@@ -18,8 +18,8 @@
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
               </div><!--pull-right-->
-            <h4 class="modal-title" id="myModalLabel">A <%= movie.category.name if movie.category.present? %> for <%= movie.watchlist.list %></h4>
-            
+            <h4 class="modal-title" id="myModalLabel">A <%= movie.category.name if movie.category.present? %> for <%= movie.watchlist.list if movie.watchlist.present? %></h4>
+
           </div> <!-- modal header -->
 
           <div class="modal-body">
@@ -27,33 +27,33 @@
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork movie-holder" %>
                 <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
-                  <%= button_to "Watch Movie", movie.watch_url, class: "btn btn-primary btn-s" %>
+                  <%= button_to "Watch Movie", movie.watch_url, method: :get, class: "btn btn-primary btn-s", form: {target: '_blank'} %>
 
                 </div><!--watch-info-->
                 <div style="margin-top: 5%;" class="watch-info <%= 'hidden' unless movie.preview_link.present? %>">
-                  <%= button_to "Watch Trailer", movie.preview_link, class: "btn btn-danger btn-xs" %>
+                  <%= button_to "Watch Trailer", movie.preview_link, method: :get, class: "btn btn-danger btn-xs", form: {target: '_blank'} %>
                 </div><!--watch-info-->
 
 
               </div><!--col-sm-3-->
 
               <div class="col-sm-9">
-              
+
               <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil" %>&nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
               <div class="stats">
-                <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p> 
+                <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
               </div><!-- stats -->
-              
+
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p <%= 'hidden' unless movie.notes.present? %>><strong>Notes:</strong> <%= movie.notes %></p>
               <p <%= 'hidden' unless movie.our_rating.present? %>><strong>Our Rating:</strong> <%= movie.our_rating %></p>
               <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched %></p>
               <p <%= 'hidden' unless movie.location_watched.present? %>><strong>Watched at:</strong> <%= movie.location_watched %></p>
-                
+
 
               </div><!--col-sm-9-->
             </div><!--row-->
