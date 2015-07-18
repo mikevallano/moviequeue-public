@@ -8,13 +8,13 @@
             <div class="pull-right">
               <%= form_for(movie, url: movie_path(movie), :html => {class: "form-inline"}) do |f| %>
                  <% if movie .been_watched %>
-                 <p class="movie-status-watched">Watched</p>
+                 <p class="movie-status-watched">Watched<br>
                    <%= f.hidden_field :been_watched, :value => false %>
-                   <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs" %>
+                   <%= f.submit "Mark as Unwatched", class: "btn btn-default btn-xs btn-hider" %></p>
                  <% else %>
-                 <p class="movie-status-unwatched">Unwatched</p>
+                 <p class="movie-status-unwatched">Unwatched</br>
                    <%= f.hidden_field :been_watched, :value => true %>
-                   <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs" %>
+                   <%= f.submit "Mark as Watched", class: "btn btn-default btn-xs btn-hider" %></p>
                  <% end %>  <!-- if -->
                <% end %> <!-- do -->
               </div><!--pull-right-->
@@ -45,12 +45,12 @@
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o" %>
               </div><!--pull-right-->
               <div class="stats">
-                <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
-                <p>Our Rating: <%= movie.our_rating if movie.our_rating.present? %> | Category: <%= movie.category.name if movie.category.present? %></p>  
+                <p><%= link_to "IMDB", movie.imdb_url %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p> 
               </div><!-- stats -->
               
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p <%= 'hidden' unless movie.notes.present? %>><strong>Notes:</strong> <%= movie.notes %></p>
+              <p <%= 'hidden' unless movie.our_rating.present? %>><strong>Our Rating:</strong> <%= movie.our_rating %></p>
               <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched %></p>
               <p <%= 'hidden' unless movie.location_watched.present? %>><strong>Watched at:</strong> <%= movie.location_watched %></p>
                 
