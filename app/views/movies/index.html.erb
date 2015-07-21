@@ -4,33 +4,8 @@
 
 <div class="row">
   <h2>In the Queue...</h2>
-  <% @movies.order("created_at DESC").each do |movie| %>
-
-    <% unless movie.been_watched %>
-      <div class="movie-holder">
-        <div class="movie-title">
-           <p><%= movie.title %></p>
-         </div><!-- movie-title -->
-         <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
-         <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-          <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
-            <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
-          </div><!-- movie-footer -->
-        </div><!-- movie-holder -->
-      <% end %> <!-- unless -->
-
-      <!-- Modal Partial - Called "Movie" -->
-      <%= render :partial=>'movies/movie', :object=> movie %>
-
-  <% end %><!-- each do -->
-</div><!-- row -->
-
-<div class="row">
-  <h2>Recently Watched...</h2>
-  <% @movies.order("updated_at DESC").each do |movie| %>
-
-    <% if movie.been_watched %>
-      <div class="movie-holder">
+  <% @unwatched_movies.each do |movie| %>
+    <div class="movie-holder">
       <div class="movie-title">
          <p><%= movie.title %></p>
        </div><!-- movie-title -->
@@ -40,13 +15,36 @@
           <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
         </div><!-- movie-footer -->
       </div><!-- movie-holder -->
-    <% end %> <!-- unless -->
 
     <!-- Modal Partial - Called "Movie" -->
     <%= render :partial=>'movies/movie', :object=> movie %>
 
+<% end %><!-- each do -->
+</div><!-- row -->
+
+<%= will_paginate @unwatched_movies %>
+
+<div class="row">
+  <h2>Recently Watched...</h2>
+  <% @watched_movies.each do |movie| %>
+    <div class="movie-holder">
+    <div class="movie-title">
+       <p><%= movie.title %></p>
+     </div><!-- movie-title -->
+     <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
+     <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
+      <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
+        <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
+      </div><!-- movie-footer -->
+    </div><!-- movie-holder -->
+
+  <!-- Modal Partial - Called "Movie" -->
+  <%= render :partial=>'movies/movie', :object=> movie %>
+
   <% end %><!-- each do -->
 </div><!-- row -->
+
+<%= will_paginate @watched_movies %>
 
 
 

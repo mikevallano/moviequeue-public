@@ -5,8 +5,13 @@ class Movie < ActiveRecord::Base
   validates :title, :watchlist_id, presence: true
   validates :title, presence: true, uniqueness: true
 
-  # will_paginate
-  #self.per_page = 10
+  def self.been_watched
+    Movie.where(:been_watched => true)
+  end
+
+  def self.unwatched
+    Movie.where(:been_watched => false)
+  end
 
 end
 
