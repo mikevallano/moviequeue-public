@@ -6,9 +6,6 @@
      </div><!-- movie-title -->
      <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
      <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-      <div class="movie-footer-unwatched">
-        <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
-      </div><!-- movie-footer -->
     </div><!-- movie-holder -->
 
   <!-- Modal Partial - Called "Movie" -->
