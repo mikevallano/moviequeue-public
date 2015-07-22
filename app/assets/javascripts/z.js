@@ -12,6 +12,18 @@ $(document).ready(function() {
   });
 
 
+// ajax pagination
+  $('#unwatched_movies_div').on("click", ".pagination a", function () {
+    $.getScript(this.href);
+    return false;
+  });
+
+
+  // $('#watched_movies_div').on("click", ".pagination a", function () {
+  //   $.getScript(this.href);
+  //   return false;
+  // });
+
 
 
 // the final closer
