@@ -3,48 +3,14 @@
   <h1>Category: <%= @category.name %></h1>
 </div><!-- row -->
 
-<div class="row">
-  <h2>In the Queue...</h2>
-  <% @category.movies.order("created_at DESC").each do |movie| %>
+<div class="row" id="category_unwatched_div">
 
-    <% unless movie.been_watched %>
-      <div class="movie-holder">
-      <div class="movie-title">
-         <p><%= movie.title %></p>
-       </div><!-- movie-title -->
-       <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
-       <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-        <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
-          <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
-        </div><!-- movie-footer -->
-      </div><!-- movie-holder -->
-    <% end %> <!-- unless -->
+ <%= render 'movies/unwatched_movies' %>
 
-    <!-- Modal Partial - Called "Movie" -->
-    <%= render :partial=>'movies/movie', :object=> movie %>
-
-  <% end %><!-- each do -->
 </div><!-- row -->
 
-<div class="row">
-  <h2>Recently Watched...</h2>
-  <% @category.movies.order("updated_at DESC").each do |movie| %>
+<div class="row" id="category_watched_div">
 
-    <% if movie.been_watched %>
-      <div class="movie-holder">
-      <div class="movie-title">
-         <p><%= movie.title %></p>
-       </div><!-- movie-title -->
-       <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
-       <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
-        <div class="movie-footer-unwatched <%= 'hidden' if movie.been_watched %>">
-          <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
-        </div><!-- movie-footer -->
-      </div><!-- movie-holder -->
-    <% end %> <!-- unless -->
+  <%= render 'movies/watched_movies' %>
 
-    <!-- Modal Partial - Called "Movie" -->
-    <%= render :partial=>'movies/movie', :object=> movie %>
-
-  <% end %><!-- each do -->
 </div><!-- row -->

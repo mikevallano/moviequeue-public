@@ -12,6 +12,17 @@ class WatchlistsController < ApplicationController
   # GET /watchlists/1
   # GET /watchlists/1.json
   def show
+    @watchdiv = params[:watchdiv]
+     if @watchdiv == 'unwatched'
+      @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+    else
+      @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => 1, :per_page => 2).order('created_at DESC')
+    end
+    if @watchdiv == 'been_watched'
+     @watched_movies = @watchlist.movies.been_watched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+    else
+     @watched_movies = @watchlist.movies.been_watched.paginate(:page => 1, :per_page => 2).order('created_at DESC')
+    end
   end
 
   # GET /watchlists/new

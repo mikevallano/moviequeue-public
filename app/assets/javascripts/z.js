@@ -12,7 +12,7 @@ $(document).ready(function() {
   });
 
 
-// ajax pagination
+// ajax pagination on movies
 
 var current_unwatched_url = "http://localhost:3000/movies.js";
 var current_watched_url = "http://localhost:3000/movies.js";
@@ -41,6 +41,30 @@ var current_watched_url = "http://localhost:3000/movies.js";
     return false;
   });
 
+
+// ajax pagination for categories
+
+  $('#category_unwatched_div').on("click", ".pagination a", function () {
+    $.getScript(this.href);
+    return false;
+  });
+
+  $('#category_watched_div').on("click", ".pagination a", function () {
+    $.getScript(this.href);
+    return false;
+  });
+
+// ajax pagination for watchlists
+
+$('#watchlist_unwatched_div').on("click", ".pagination a", function () {
+    $.getScript(this.href);
+    return false;
+  });
+
+$('#watchlist_watched_div').on("click", ".pagination a", function () {
+  $.getScript(this.href);
+  return false;
+});
 
 
 // the final closer

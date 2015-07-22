@@ -12,6 +12,17 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @watchdiv = params[:watchdiv]
+     if @watchdiv == 'unwatched'
+      @unwatched_movies = @category.movies.unwatched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+    else
+      @unwatched_movies = @category.movies.unwatched.paginate(:page => 1, :per_page => 2).order('created_at DESC')
+    end
+    if @watchdiv == 'been_watched'
+     @watched_movies = @category.movies.been_watched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+    else
+     @watched_movies = @category.movies.been_watched.paginate(:page => 1, :per_page => 2).order('created_at DESC')
+    end
   end
 
   # GET /categories/new
