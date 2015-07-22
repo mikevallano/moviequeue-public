@@ -10,26 +10,26 @@ class MoviesController < ApplicationController
      @movies = Movie.where("title LIKE '%#{params[:search]}%'")
      if @movies.length.zero?
        flash[:notice] = 'Sorry, there are no matching titles for your search.'
-       @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
-       @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
+       @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+       @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
      end
    else
      @watchdiv = params[:watchdiv]
      if @watchdiv == 'unwatched'
-      @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+      @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
       @unwatched_pager = params[:page].to_i
       puts "unwatched page number is #{@unwatched_pager.inspect}"
       puts "watched page number is #{@watched_pager.inspect}"
     else
-      @unwatched_movies = Movie.unwatched.paginate(:page => @unwatched_pager, :per_page => 2).order('created_at DESC')
+      @unwatched_movies = Movie.unwatched.paginate(:page => @unwatched_pager, :per_page => 12).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 6).order('updated_at DESC')
      @watched_pager = params[:page].to_i
      puts "unwatched page number is #{@unwatched_pager.inspect}"
      puts "watched page number is #{@watched_pager.inspect}"
     else
-     @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 2).order('created_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 6).order('updated_at DESC')
     end
    end
    respond_to do |format|
