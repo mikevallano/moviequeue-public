@@ -10,12 +10,12 @@ class MoviesController < ApplicationController
      @movies = Movie.where("title LIKE '%#{params[:search]}%'")
      if @movies.length.zero?
        flash[:notice] = 'Sorry, there are no matching titles for your search.'
-       @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
-       @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
+       @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
+       @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
      end
    else
-     @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
+     @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
    end
  end
 
@@ -128,8 +128,38 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched,
-        :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary,
-        :imdb_rating, :imdb_genre, :preview_link, :runtime, :been_watched, :year_released)
+      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched, :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary, :imdb_rating, :imdb_genre, :created_at, :updated_at, :preview_link, :runtime, :been_watched, :year_released, :bypassapi)
     end
 end
+
+
+# == Schema Information
+#
+# Table name: movies
+#
+#  id                :integer          not null, primary key
+#  title             :string
+#  imdb_url          :string
+#  watch_url         :string
+#  date_watched      :date
+#  location_watched  :string
+#  category_id       :integer
+#  watchlist_id      :integer
+#  our_rating        :float
+#  notes             :text
+#  imdb_artwork      :string
+#  imdb_plot_summary :text
+#  imdb_rating       :float
+#  imdb_genre        :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  preview_link      :string
+#  runtime           :integer
+#  been_watched      :boolean
+#  year_released     :string
+#
+# Indexes
+#
+#  index_movies_on_category_id   (category_id)
+#  index_movies_on_watchlist_id  (watchlist_id)
+#
