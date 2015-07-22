@@ -14,9 +14,29 @@ class MoviesController < ApplicationController
        @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
      end
    else
-     @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
+     @watchdiv = params[:watchdiv]
+     if @watchdiv == 'unwatched'
+      @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+      @unwatched_pager = params[:page].to_i
+      puts "unwatched page number is #{@unwatched_pager.inspect}"
+      puts "watched page number is #{@watched_pager.inspect}"
+    else
+      @unwatched_movies = Movie.unwatched.paginate(:page => @unwatched_pager, :per_page => 2).order('created_at DESC')
+    end
+    if @watchdiv == 'been_watched'
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 2).order('created_at DESC')
+     @watched_pager = params[:page].to_i
+     puts "unwatched page number is #{@unwatched_pager.inspect}"
+     puts "watched page number is #{@watched_pager.inspect}"
+    else
+     @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 2).order('created_at DESC')
+    end
    end
+   respond_to do |format|
+    format.html # index.html.erb
+    format.json { render json: @unwatched_movies }
+    format.js
+  end
  end
 
 
@@ -128,7 +148,9 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched, :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary, :imdb_rating, :imdb_genre, :created_at, :updated_at, :preview_link, :runtime, :been_watched, :year_released, :bypassapi)
+      params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched,
+        :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary,
+        :imdb_rating, :imdb_genre, :preview_link, :runtime, :been_watched, :year_released, :bypassapi)
     end
 end
 

@@ -1,0 +1,19 @@
+  <h2>In the Queue...</h2>
+  <% @unwatched_movies.each do |movie| %>
+    <div class="movie-holder">
+      <div class="movie-title">
+         <p><%= movie.title %></p>
+       </div><!-- movie-title -->
+       <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
+       <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
+        <div class="movie-footer-unwatched">
+          <h4><%= movie.watchlist.list if movie.watchlist.present? %></h4>
+        </div><!-- movie-footer -->
+      </div><!-- movie-holder -->
+
+    <!-- Modal Partial - Called "Movie" -->
+    <%= render :partial=>'movies/movie', :object=> movie %>
+
+  <% end %><!-- each do -->
+
+  <%= will_paginate @unwatched_movies, :params => { :watchdiv => "unwatched" }  %>
