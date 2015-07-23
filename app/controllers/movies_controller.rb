@@ -119,8 +119,11 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    puts "first movie params is: #{movie_params}"
+    newparams = movie_params.delete_if{|k,v| k == "bypassapi"}
+    puts "this should not have them api: #{newparams}"
     respond_to do |format|
-      if @movie.update(movie_params)
+      if @movie.update(newparams)
         format.html { redirect_to movies_url, notice: 'Movie was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie }
       else
