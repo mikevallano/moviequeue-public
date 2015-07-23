@@ -25,7 +25,7 @@
           <div class="modal-body">
           <div class="row">
               <div class="col-sm-3">
-              <%= image_tag movie.imdb_artwork, class: "artwork movie-holder modal-art-margin" %>
+              <%= image_tag movie.imdb_artwork, class: "artwork movie-holder-modal modal-art-margin" %>
                 <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
                   <%= button_to "Watch Movie", movie.watch_url, method: :get, class: "btn btn-success btn-s", form: {target: '_blank'} %>
                 </div><!--watch-info-->
@@ -40,7 +40,7 @@
 
               <div class="col-sm-9">
 
-              <h2><%= movie.title %> <span style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
+              <h2 class="modal-text"><%= movie.title %> <span style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil fa-lg" %>&nbsp; &nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o fa-lg" %>
