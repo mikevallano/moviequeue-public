@@ -22,6 +22,8 @@
 
 a:hover {
   background-color: transparent;
+  color: black;
+  text-decoration: none;
  }
 
 .movie-holder {
@@ -116,6 +118,7 @@ a:hover {
 
  .stats a:hover {
   background-color: transparent;
+  text-decoration: underline;
  }
 
  .stats hr {
