@@ -22,7 +22,7 @@
 
           </div> <!-- modal header -->
 
-          <div class="modal-body"> 
+          <div class="modal-body">
           <div class="row">
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork movie-holder modal-art-margin" %>
@@ -50,7 +50,7 @@
               <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p <%= 'hidden' unless movie.notes.present? %>><strong>Notes:</strong> <%= movie.notes %></p>
               <p <%= 'hidden' unless movie.our_rating.present? %>><strong>Our Rating:</strong> <%= movie.our_rating %></p>
-              <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched %></p>
+              <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched.stamp("January 1st, 2015") if movie.date_watched.present? %></p>
               <p <%= 'hidden' unless movie.location_watched.present? %>><strong>Watched at:</strong> <%= movie.location_watched %></p>
 
 
