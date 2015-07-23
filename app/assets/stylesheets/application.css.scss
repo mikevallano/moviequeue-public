@@ -20,6 +20,10 @@
   padding: 0px 30px;
 }
 
+.navbar {
+  border-radius: 0px;
+}
+
 a:hover {
   background-color: transparent;
   color: black;
@@ -57,7 +61,7 @@ a:hover {
 .movie-footer-unwatched {
   height: 40px;
   color: white;
-  background-color: rgba(0, 153, 0, .7);
+  background-color: rgba(0, 0, 0, .5);
   padding: 2%;
   position: relative;
   z-index: 3;
