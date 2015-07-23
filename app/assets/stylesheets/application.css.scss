@@ -20,6 +20,14 @@
   padding: 0px 30px;
 }
 
+h1, h2 {
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
 .navbar {
   border-radius: 0px;
 }
@@ -40,7 +48,7 @@ a:hover {
   background-image: image-url("artwork-blank.jpg");
   background-size: 125px;
   text-align: center;
-  border: 1px solid #b9b9b9;
+  border: 1px solid black;
 }
 
 .artwork {
@@ -75,7 +83,6 @@ a:hover {
 /* Movies Index & Show Pages */
 
  .pagination {
-  background: white;
   cursor: default;
   /* self-clearing method: */ }
   .pagination a, .pagination span, .pagination em {
