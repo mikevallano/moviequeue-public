@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
   def create
     # check if we want to bypass the API
     if movie_params[:bypassapi] == "Bypass API"
-      @movie_info = movie_params
+      @movie_info = movie_params.delete_if{|k,v| k == "bypassapi"}
 
     else
       # use the API and get the movie title via form
