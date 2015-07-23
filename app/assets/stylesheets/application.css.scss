@@ -176,9 +176,10 @@ a:hover {
   margin-bottom: 2%;
  }
 
-
  .watch-info {
+  width: 125px;
   margin: 0 auto;
+  margin-bottom: 8%;
   text-align: center;
  }
 
@@ -187,6 +188,21 @@ a:hover {
   font-size: 70%;
   font-style: italic;
  }
+
+.trailer-button a {
+  color: white;
+  font-size: 93%;
+  background-color: #31b0d5;
+  border: solid 1px #269abc;
+  border-radius: 3px;
+  padding: 3% 6%;
+  text-decoration: none;
+}
+
+.trailer-button a:hover {
+  background-color: #269abc;
+  text-decoration: none;
+}
 
  
 

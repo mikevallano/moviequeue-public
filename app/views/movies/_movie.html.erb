@@ -27,12 +27,15 @@
               <div class="col-sm-3">
               <%= image_tag movie.imdb_artwork, class: "artwork movie-holder modal-art-margin" %>
                 <div class="watch-info <%= 'hidden' unless movie.watch_url.present? %>">
-                  <%= button_to "Watch Movie", movie.watch_url, method: :get, class: "btn btn-primary btn-s", form: {target: '_blank'} %>
+                  <%= button_to "Watch Movie", movie.watch_url, method: :get, class: "btn btn-success btn-s", form: {target: '_blank'} %>
+                </div><!--watch-info-->
 
+                <div class="watch-info">
+                <div class="trailer-button">
+                <a class="trailer-button" href="https://www.youtube.com/results?search_query=<%= movie.title %>+movie+official+trailer" target="_blank">YouTube Trailer</a>
+                </div><!--trailer-button-->
                 </div><!--watch-info-->
-                <div style="margin-top: 5%;" class="watch-info <%= 'hidden' unless movie.preview_link.present? %>">
-                  <%= button_to "Watch Trailer", movie.preview_link, method: :get, class: "btn btn-danger btn-xs", form: {target: '_blank'} %>
-                </div><!--watch-info-->
+                
               </div><!--col-sm-3-->
 
               <div class="col-sm-9">
