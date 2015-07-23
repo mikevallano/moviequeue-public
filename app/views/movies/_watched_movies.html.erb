@@ -12,5 +12,11 @@
   <%= render :partial=>'movies/movie', :object=> movie %>
 
   <% end %><!-- each do -->
+  </div><!-- row -->
 
-  <%= will_paginate @watched_movies, :params => { :watchdiv => "been_watched" } %>
+ <div class="row"><!--this closes in the index/show erbs-->
+  <center>
+  <div class="pagination">
+  <%= will_paginate @watched_movies, :params => { :watchdiv => "been_watched" }, :page_links => false  %>
+  </div><!-- pagination -->
+  </center>
