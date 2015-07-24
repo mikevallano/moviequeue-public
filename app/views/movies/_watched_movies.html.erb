@@ -1,11 +1,8 @@
   <h2>Recently Watched...</h2>
   <% @watched_movies.each do |movie| %>
-    <div class="movie-holder">
-    <div class="movie-title">
-       <p><%= movie.title %></p>
-     </div><!-- movie-title -->
-     <p><a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
-     <%= image_tag movie.imdb_artwork, class: "artwork" %></a></p>
+    <div class="movie-holder-watched">
+     <a href="#" data-toggle="modal" data-target="#myModal_<%= movie.id %>">
+     <%= image_tag movie.imdb_artwork, class: "artwork-watched" %></a>
     </div><!-- movie-holder -->
 
   <!-- Modal Partial - Called "Movie" -->
