@@ -7,12 +7,13 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     if params[:search]
-     @movies = Movie.where("title LIKE '%#{params[:search]}%'")
-     if @movies.length.zero?
-       flash[:notice] = 'Sorry, there are no matching titles for your search.'
-       @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-       @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-     end
+     @unwatched_movies = Movie.where("title LIKE '%#{params[:search]}%'").paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 6).order('updated_at DESC')
+     # if @unwatched_movies.length.zero?
+     #   flash[:notice] = 'Sorry, there are no matching titles for your search.'
+     #   @unwatched_movies = @unwatched_movies.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+       # @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+     # end
    else
      @watchdiv = params[:watchdiv]
      if @watchdiv == 'unwatched'
@@ -31,7 +32,7 @@ class MoviesController < ApplicationController
     else
      @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 10).order('updated_at DESC')
     end
-   end
+   end #end of the initial if (I think)
    respond_to do |format|
     format.html # index.html.erb
     format.json { render json: @unwatched_movies }
