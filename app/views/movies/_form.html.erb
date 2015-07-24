@@ -44,7 +44,7 @@
     <%= f.label "Add Link to Movie Cover Image" %><br>
     <%= f.text_field :imdb_artwork, placeholder: "http://...", class: "form-control" %>
   </div>
-  <div class="field" class="if_watched">
+  <div class="field" id="if_watched">
     <%= f.label "Check the box if you've already watched it:" %> <%= f.check_box :been_watched, class: "if_watched" %>
   </div>
   <div class="field" id="date_picker">

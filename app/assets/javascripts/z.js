@@ -1,13 +1,15 @@
 $(document).ready(function() {
 
+  console.log("i see dead javascripts")
 
-  $("h2").on("click", function() {
+
+  $("h1").on("click", function() {
       console.log("i've been clicked");
     });
 
   $('#date_picker').hide();
 
-  $('.if_watched').on("click", function() {
+  $('#if_watched').on("click", function() {
     $('#date_picker').slideDown();
   });
 
