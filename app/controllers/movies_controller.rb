@@ -24,12 +24,12 @@ class MoviesController < ApplicationController
       @unwatched_movies = Movie.unwatched.paginate(:page => @unwatched_pager, :per_page => 12).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 6).order('updated_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
      @watched_pager = params[:page].to_i
      puts "unwatched page number is #{@unwatched_pager.inspect}"
      puts "watched page number is #{@watched_pager.inspect}"
     else
-     @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 6).order('updated_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => @watched_pager, :per_page => 10).order('updated_at DESC')
     end
    end
    respond_to do |format|

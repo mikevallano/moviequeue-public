@@ -73,9 +73,29 @@ a:hover {
   border: 1px solid #f1f1f1;
 }
 
+.movie-holder-watched {
+  position: relative;
+  z-index: 0;
+  width: 63px;
+  height: 93px;
+  float: left;
+  margin: 1.25%;
+  background-image: image-url("artwork-blank.jpg");
+  background-size: 63px;
+  text-align: center;
+}
+
 .artwork {
   width: 123px;
   height: 183px;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 5%;
+}
+
+.artwork-watched {
+  width: 63px;
+  height: 93px;
   z-index: 2;
   position: relative;
   margin-bottom: 5%;
