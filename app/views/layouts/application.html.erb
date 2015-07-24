@@ -47,7 +47,7 @@
               <% end %>
               <li class="divider"></li>
               <li><%= link_to "Edit Categories", categories_path %></li>
-              <li><%= link_to ' Add Category', new_category_path %></li> 
+              <li><%= link_to ' Add Category', new_category_path %></li>
             </ul>
           </li><!--CATEGORY dropdown-->
           <!--WATCHLIST DROPDOWN-->
@@ -59,13 +59,13 @@
               <% end %>
               <li class="divider"></li>
               <li><%= link_to "Edit Watchlists", watchlists_path %></li>
-              <li><%= link_to ' New Watchlist', new_watchlist_path %></li> 
+              <li><%= link_to ' New Watchlist', new_watchlist_path %></li>
             </ul>
           </li><!--WATCHLIST dropdown-->
 
         </ul>
         <form class="navbar-form navbar-left" role="search">
-        <%= form_tag("/movies", method: "get", role: "search", class: "navbar-form navbar-left") do %>
+          <%= form_tag(movies_path, method: "get", role: "search", class: "navbar-form navbar-left") do %>
           <div class="form-group">
           <%= text_field_tag(:search, nil, placeholder: "Movie Title", class: "form-control") %>
           </div>
@@ -74,6 +74,7 @@
           <%= link_to '+ ', new_movie_path, class: "btn btn-default fa fa-film" %>
           <% end %>
         </form>
+
 
         <ul class="nav navbar-nav navbar-form navbar-right">
 
