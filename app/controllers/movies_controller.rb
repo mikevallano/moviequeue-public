@@ -7,8 +7,8 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     if params[:search]
-     @unwatched_movies = Movie.where("title LIKE '%#{params[:search]}%'").paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 6).order('updated_at DESC')
+     @unwatched_movies = Movie.where("title LIKE '%#{params[:search]}%'").paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
      # if @unwatched_movies.length.zero?
      #   flash[:notice] = 'Sorry, there are no matching titles for your search.'
      #   @unwatched_movies = @unwatched_movies.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
