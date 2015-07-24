@@ -20,6 +20,23 @@
   padding: 0px 30px;
 }
 
+h1, h2, h3, h4 {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+body {
+  background-color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
 .navbar {
   border-radius: 0px;
 }
@@ -40,7 +57,20 @@ a:hover {
   background-image: image-url("artwork-blank.jpg");
   background-size: 125px;
   text-align: center;
-  border: 1px solid #b9b9b9;
+  border: 1px solid black;
+}
+
+.movie-holder-modal {
+  position: relative;
+  z-index: 0;
+  width: 125px;
+  height: 185px;
+  float: left;
+  margin: 1%;
+  background-image: image-url("artwork-blank.jpg");
+  background-size: 125px;
+  text-align: center;
+  border: 1px solid #f1f1f1;
 }
 
 .artwork {
@@ -72,33 +102,36 @@ a:hover {
   display: none;
 }
 
+.dropshadow {
+  text-shadow: 2px 2px 5px #000000;
+}
 /* Movies Index & Show Pages */
 
  .pagination {
-  background: white;
   cursor: default;
   /* self-clearing method: */ }
   .pagination a, .pagination span, .pagination em {
     padding: 0.2em 0.5em;
     display: block;
     float: left;
-    margin-right: 1px; }
+    margin-right: 1px; 
+    background-color: #222;}
   .pagination .disabled {
     color: #999999;
-    border: 1px solid #dddddd; }
+    /*border: 1px solid #dddddd;*/ }
   .pagination .current {
     font-style: normal;
     font-weight: bold;
     background: #2e6ab1;
     color: white;
-    border: 1px solid #2e6ab1; }
+    /*border: 1px solid #2e6ab1;*/ }
   .pagination a {
     text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5; }
+    color: white;
+    /*border: 1px solid #9aafe5;*/ }
     .pagination a:hover, .pagination a:focus {
-      color: #000033;
-      border-color: #000033; }
+      color: gray;
+      /*border-color: #000033;*/ }
   .pagination .page_info {
     background: #2e6ab1;
     color: white;
@@ -123,9 +156,14 @@ a:hover {
 
 
 /* Movies Show Page & Modals */
+.modal-text {
+  color: black;
+}
+
 .movie-status-unwatched {
+  font-family: 'Open Sans', sans-serif;
   font-size: 120%;
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   text-align: center;
   background-color: green;
@@ -135,7 +173,9 @@ a:hover {
 }
 
 .movie-status-watched {
+  font-family: 'Open Sans', sans-serif;
   font-size: 120%;
+  font-weight: 700;
   color: white;
   text-align: center;
   background-color: gray;
@@ -208,5 +248,12 @@ a:hover {
   text-decoration: none;
 }
 
- 
+ /* FORMS */
+ .form-text {
+  color: white;
+ }
+
+ .form-text a {
+  color: #f1f1f1;
+ }
 
