@@ -1,3 +1,18 @@
+<% if @noresults.present? %>
+<h1><%= @noresults %></h1>
+
+ <% elsif @search_results.present? %>
+
+<div class="row">
+
+  <h2>And the search results are...</h2>
+
+    <%= render 'search_results' %>
+
+ </div>
+
+<% else %>
+
 <div class="row">
   <h2>All Movies in the Queue...</h2>
 </div><!-- row -->
@@ -14,4 +29,4 @@
   <%= render 'watched_movies' %>
 
 </div><!-- row -->
-
+<% end %>

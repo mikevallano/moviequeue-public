@@ -13,6 +13,10 @@ class Movie < ActiveRecord::Base
     Movie.where(:been_watched => false)
   end
 
+   def self.text_search(search)
+    where("title ilike :q", q: "%#{search}%")
+  end
+
 end
 
 # == Schema Information
