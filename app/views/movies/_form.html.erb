@@ -1,3 +1,5 @@
+<div class="form-text">
+
 <%= form_for(@movie) do |f| %>
   <% if @movie.errors.any? %>
     <div id="error_explanation">
@@ -65,3 +67,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div><!-- form-text -->
