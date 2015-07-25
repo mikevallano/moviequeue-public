@@ -1,7 +1,10 @@
 task :taco => :environment do
   Movie.connection
-  @movies = Movie.first(5)
+  @movies = Movie.first(3)
   @movies.each do |movie|
-    puts movie.title
+    @movie_title = movie.title
+    @content = open("http://www.omdbapi.com/?t=#{@movie_title}&y=&plot=short&r=json").read
+    @results = JSON.parse(@content, symbolize_names: true)
+    puts @results
   end
 end
