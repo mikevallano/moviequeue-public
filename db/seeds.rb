@@ -9,6 +9,8 @@
 Watchlist.create(list: "Anne")
 Watchlist.create(list: "Mike")
 Watchlist.create(list: "Both of Us")
+Watchlist.create(list: "NOPE")
+
 
 
 Category.create(name: "Action Movie")
