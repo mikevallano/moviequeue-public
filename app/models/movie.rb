@@ -21,8 +21,6 @@ class Movie < ActiveRecord::Base
     joins(:watchlist).where.not({ "watchlists.id" => 4})
   end
 
-  #testing zap
-
 end
 
 # == Schema Information
