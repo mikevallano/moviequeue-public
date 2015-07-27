@@ -18,7 +18,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.notnope
-    joins(:watchlist).where.not({ "watchlists.list" => 'Nope'})
+    joins(:watchlist).where.not({ "watchlists.id" => 4})
   end
 
 end
