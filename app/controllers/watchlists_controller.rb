@@ -19,9 +19,9 @@ class WatchlistsController < ApplicationController
       @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => 1, :per_page => 18).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
-     @watched_movies = @watchlist.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+     @watched_movies = @watchlist.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('movies.date_watched DESC')
     else
-     @watched_movies = @watchlist.movies.been_watched.paginate(:page => 1, :per_page => 10).order('created_at DESC')
+     @watched_movies = @watchlist.movies.been_watched.paginate(:page => 1, :per_page => 10).order('movies.date_watched DESC')
     end
   end
 

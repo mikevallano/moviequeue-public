@@ -19,9 +19,9 @@ class CategoriesController < ApplicationController
       @unwatched_movies = @category.movies.notnope.unwatched.paginate(:page => 1, :per_page => 18).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
-     @watched_movies = @category.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+     @watched_movies = @category.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('movies.date_watched DESC')
     else
-     @watched_movies = @category.movies.been_watched.paginate(:page => 1, :per_page => 10).order('created_at DESC')
+     @watched_movies = @category.movies.been_watched.paginate(:page => 1, :per_page => 10).order('movies.date_watched DESC')
     end
   end
 

@@ -20,9 +20,9 @@ class MoviesController < ApplicationController
       @unwatched_movies = Movie.notnope.unwatched.paginate(:page => 1, :per_page => 18).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
-     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 10).order('date_watched DESC')
     else
-     @watched_movies = Movie.been_watched.paginate(:page => 1, :per_page => 10).order('updated_at DESC')
+     @watched_movies = Movie.been_watched.paginate(:page => 1, :per_page => 10).order('date_watched DESC')
     end
    end #end of the initial if (I think)
    respond_to do |format|
