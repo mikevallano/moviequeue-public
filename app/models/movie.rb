@@ -6,15 +6,19 @@ class Movie < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
 
   def self.been_watched
-    Movie.where(:been_watched => true)
+    where(:been_watched => true)
   end
 
   def self.unwatched
-    Movie.where(:been_watched => false)
+    where(:been_watched => false)
   end
 
-   def self.text_search(search)
-    where("title ilike :q", q: "%#{search}%")
+  def self.text_search(search)
+    where("title ilike ?", '%' + search + '%')
+  end
+
+  def self.notnope
+    joins(:watchlist).where.not({ "watchlists.list" => 'Nope'})
   end
 
 end
