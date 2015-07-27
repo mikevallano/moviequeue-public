@@ -15,9 +15,9 @@ class MoviesController < ApplicationController
    else
      @watchdiv = params[:watchdiv]
      if @watchdiv == 'unwatched'
-      @unwatched_movies = Movie.unwatched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
+      @unwatched_movies = Movie.notnope.unwatched.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
     else
-      @unwatched_movies = Movie.unwatched.paginate(:page => 1, :per_page => 12).order('created_at DESC')
+      @unwatched_movies = Movie.notnope.unwatched.paginate(:page => 1, :per_page => 12).order('created_at DESC')
     end
     if @watchdiv == 'been_watched'
      @watched_movies = Movie.been_watched.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
