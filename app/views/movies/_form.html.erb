@@ -35,10 +35,6 @@
     <%= f.label "Enter a link to where we can watch it:" %><br>
     <%= f.text_field :watch_url, placeholder: "http://...", class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label "Enter a link to the trailer:" %><br>
-    <%= f.text_field :preview_link, placeholder: "http://...", class: "form-control" %>
-  </div>
   <%= image_tag @movie.imdb_artwork, class: "artwork" if @movie.imdb_artwork.present?  %>
   <div class="field">
     <%= f.label "Add Link to Movie Cover Image" %><br>
