@@ -40,17 +40,17 @@
 
               <div class="col-sm-9">
 
-              <h2 class="modal-text"><%= movie.title %> <span style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
+              <h2 class="modal-text"><%= movie.title %> <span <%= 'hidden' unless movie.year_released.present? %> style="font-size: 40%;">(<%= movie.year_released %>)</span></h2>
               <div class="pull-right">
                 <%= link_to ' ', edit_movie_path(movie), class: "fa fa-pencil fa-lg" %>&nbsp; &nbsp;
                 <%= link_to ' ', movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' }, class: "fa fa-trash-o fa-lg" %>
               </div><!--pull-right-->
               <div class="stats">
-                <p><%= link_to "IMDB", movie.imdb_url, :target => "_blank" %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
+                <p <%= 'hidden' unless movie.imdb_url.present? %>><%= link_to "IMDB", movie.imdb_url, :target => "_blank" %>: <%= movie.imdb_rating %> of 10 | <%= movie.runtime %> min | <%= movie.imdb_genre %></p>
                 <hr/>
               </div><!-- stats -->
 
-              <p><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
+              <p <%= 'hidden' unless movie.imdb_plot_summary.present? %> ><strong>Plot Summary:</strong> <%= movie.imdb_plot_summary %></p>
               <p <%= 'hidden' unless movie.notes.present? %>><strong>Notes:</strong> <%= movie.notes %></p>
               <p <%= 'hidden' unless movie.our_rating.present? %>><strong>Our Rating:</strong> <%= movie.our_rating %></p>
               <p <%= 'hidden' unless movie.date_watched.present? %>><strong>Watched on:</strong> <%= movie.date_watched.stamp("January 1st, 2015") if movie.date_watched.present? %></p>
