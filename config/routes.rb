@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "nocansee", to: "static_pages#nocansee"
   get "results", to: "static_pages#results"
 
-  root 'movies#index'
+  #root 'movies#index'
+  root :to => 'watchlists#show', :id => '3'
 
 end
