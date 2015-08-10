@@ -30,6 +30,7 @@ end
 #  runtime           :integer
 #  been_watched      :boolean
 #  year_released     :string
+#  imdb_actors       :string
 #
 # Indexes
 #

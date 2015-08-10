@@ -91,7 +91,8 @@ class MoviesController < ApplicationController
           imdb_rating: @results[:imdbRating],
           imdb_genre: @results[:Genre],
           runtime: @results[:Runtime],
-          year_released: @results[:Year]}
+          year_released: @results[:Year], 
+          imdb_actors: @results[:Actors]}
       end #end of if/else based on API error
     end #end of if/else on whether or not to bypass the API
 
@@ -146,7 +147,7 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :imdb_url, :watch_url, :date_watched, :location_watched,
         :category_id, :watchlist_id, :our_rating, :notes, :imdb_artwork, :imdb_plot_summary,
-        :imdb_rating, :imdb_genre, :preview_link, :runtime, :been_watched, :year_released, :bypassapi)
+        :imdb_rating, :imdb_genre, :preview_link, :runtime, :been_watched, :year_released, :bypassapi, :imdb_actors)
     end
 end
 
