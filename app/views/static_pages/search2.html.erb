@@ -1,0 +1,69 @@
+<h1>Search Two, bitches!</h1>
+
+<%= form_tag '/search2', method: :get do %>
+  <%= label_tag :movie_title, "Enter Title:" %>
+  <%= text_field_tag :movie_title %><br>
+  <%= submit_tag "Gimme", :class => "btn btn-primary" %>
+<% end %>
+
+
+<br><br>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>IMDB Link</th>
+      <th>Cover</th>
+      <th>Submit</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <% @results.each do |result| %>
+      <tr>
+        <td><%= result[:Title] %></td>
+        <td><%= result[:Year] %></td>
+        <td><%= link_to "IMDB LINK", "http://www.imdb.com/title/#{result[:imdbID]}", target: '_blank' %></td>
+        <td><%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %></td>
+        <td>
+          <form action="/movies" method="post">
+            <input type="hidden" name="movie[imdbID]" value='<%= result[:imdbID] %>'>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+             <select name="movie[watchlist_id]">
+                <option value="3">Both</option>
+                 <option value="1">Anne</option>
+                 <option value="2">Mike</option>
+               </select>
+            <input type="submit" value="Add this movie">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script type='text/javascript'>
+
+$(document).ready(function(){
+
+
+  $('#submitter').on('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var titlesearch = this.prev;
+    var imdbval = titlesearch.val();
+    console.log(imdbval);
+
+  });
+
+  // final closer
+});
+
+</script>
+
+

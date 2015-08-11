@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get "nocansee", to: "static_pages#nocansee"
   get "results", to: "static_pages#results"
+  get "search", to: "static_pages#index"
+  get "search2", to: "static_pages#search2"
 
   root 'movies#index'
 

@@ -14,7 +14,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.unwatched
-    where(:been_watched => false)
+    where(been_watched: [false, nil])
   end
 
   def self.notnope
