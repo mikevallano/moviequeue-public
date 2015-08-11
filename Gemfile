@@ -66,6 +66,7 @@ gem 'pry'
 gem 'jquery-ui-rails'
 gem 'figaro'
 gem 'geocoder'
+gem 'jquery-turbolinks'
 
 group :production do
   gem 'rails_12factor'
