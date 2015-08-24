@@ -36,14 +36,19 @@
           <td><%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %></td>
           <td>
             <form action="/movies" method="post">
+              <!-- <input type="hidden" name="movie[title]" value='<%= result[:Title] %>'> -->
               <input type="hidden" name="movie[imdbID]" value='<%= result[:imdbID] %>'>
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-               <select name="movie[watchlist_id]">
-                  <option value="3">Both</option>
-                   <option value="1">Anne</option>
-                   <option value="2">Mike</option>
-                 </select>
+              <select name="movie[watchlist_id]">
+                <% Watchlist.all.order("id DESC").each do |watchlist| %>
+                <option value="<%= watchlist.id %>"><%= watchlist.list %></option>
+                <% end %>
+              </select>
+              <select name="movie[category_id]">
+                <% Category.all.order("name ASC").each do |category| %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+                <% end %>
+            </select>
               <input type="submit" value="Add this movie">
             </form>
           </td>
