@@ -1,3 +1,18 @@
+<% if @noresults.present? %>
+<h1><%= @noresults %></h1>
+
+ <% elsif @search_results.present? %>
+
+<div class="row">
+
+  <h2>And the search results are...</h2>
+
+    <%= render 'movies/search_results' %>
+
+ </div>
+
+<% else %>
+
 <div class="row">
   <p class="pull-right"><%= link_to "All Movies", movies_path %></p>
   <h2>In the Queue for <%= @watchlist.list %>...</h2>
@@ -15,3 +30,4 @@
   <%= render 'movies/watched_movies' %>
 
 </div><!-- row -->
+<% end %>

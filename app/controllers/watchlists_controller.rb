@@ -12,17 +12,30 @@ class WatchlistsController < ApplicationController
   # GET /watchlists/1
   # GET /watchlists/1.json
   def show
-    @watchdiv = params[:watchdiv]
-     if @watchdiv == 'unwatched'
-      @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => params[:page], :per_page => 18).order('created_at DESC')
+    if params[:search].present?
+      if Movie.text_search(params[:search]).count < 1
+        @noresults = "Sorry, could not find that movie."
+      else
+        @search_results = Movie.text_search(params[:search])
+      end
     else
-      @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => 1, :per_page => 18).order('created_at DESC')
-    end
-    if @watchdiv == 'been_watched'
-     @watched_movies = @watchlist.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('movies.date_watched DESC')
-    else
-     @watched_movies = @watchlist.movies.been_watched.paginate(:page => 1, :per_page => 10).order('movies.date_watched DESC')
-    end
+      @watchdiv = params[:watchdiv]
+      if @watchdiv == 'unwatched'
+        @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => params[:page], :per_page => 18).order('created_at DESC')
+      else
+        @unwatched_movies = @watchlist.movies.unwatched.paginate(:page => 1, :per_page => 18).order('created_at DESC')
+      end
+      if @watchdiv == 'been_watched'
+       @watched_movies = @watchlist.movies.been_watched.paginate(:page => params[:page], :per_page => 10).order('movies.date_watched DESC')
+      else
+       @watched_movies = @watchlist.movies.been_watched.paginate(:page => 1, :per_page => 10).order('movies.date_watched DESC')
+      end
+    end #end of the initial if statement
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @unwatched_movies }
+        format.js
+      end
   end
 
   # GET /watchlists/new
