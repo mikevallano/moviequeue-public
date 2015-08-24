@@ -27,7 +27,7 @@
       <tr>
         <td><%= result[:Title] %></td>
         <td><%= result[:Year] %></td>
-        <td><%= link_to "IMDB LINK", "http://www.imdb.com/title/#{result[:imdbID]}", target: '_blank' %></td>
+        <td><%= link_to "IMDB LINK", "http://www.imdb.com/title/#{result[:imdbID]}/", target: '_blank' %></td>
         <td><%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %></td>
         <td>
           <form action="/movies" method="post">
