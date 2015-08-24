@@ -56,13 +56,18 @@ class MoviesController < ApplicationController
 
     else
       # use the API and get the movie title via form
+      if movie_params[:title].present?
       @movie_title = movie_params[:title].gsub(" ","-")
 
       # get data from the api based on movie title
       @content = open("http://www.omdbapi.com/?t=#{@movie_title}&y=&plot=short&r=json").read
 
+      else
+      @imdbID = movie_params[:imdbID]
+      @content = open("http://www.omdbapi.com/?i=#{@imdbID}&plot=short&r=json").read
       # parse the results to a ruby hash
       @results = JSON.parse(@content, symbolize_names: true)
+     end
 
       # check if API has an error. if so, use movie_params
       if @results[:Error] == "Movie not found!"
@@ -91,7 +96,7 @@ class MoviesController < ApplicationController
           imdb_rating: @results[:imdbRating],
           imdb_genre: @results[:Genre],
           runtime: @results[:Runtime],
-          year_released: @results[:Year], 
+          year_released: @results[:Year],
           imdb_actors: @results[:Actors]}
       end #end of if/else based on API error
     end #end of if/else on whether or not to bypass the API

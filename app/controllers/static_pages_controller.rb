@@ -12,6 +12,18 @@ def results
 end
 
 
+def apisearch
+  if params[:movie_title]
+    @movie_title = params[:movie_title].gsub(" ","-")
+  else
+    @pre_search = "Search for a movie"
+    # @movie_title = "fargo"
+  end
+
+  @content = open("http://www.omdbapi.com/?s=#{@movie_title}").read
+  @wholeresults = JSON.parse(@content, symbolize_names: true)
+  @results = @wholeresults[:Search]
+end
 
 
 end

@@ -1,2 +1,51 @@
-<h1>HOME PAGE</h1>
-<h2>lol</h2>
+<h1>Search for a movie</h1>
+
+<h2 id="searcher">search here</h2>
+
+<label>Input :</label>
+<input type="text" id="titleinput" name="name" value="" />
+<input type="button" id="submitter" value="Get Value"/>
+<input type="button" id="resetsearch" value=" Reset "/>
+
+<div id="search-results">
+  <ul id="search-lister">
+  </ul>
+</div>
+
+<!-- #get request to omdpapi
+#get request based on user input
+#parse results in a list
+# add image to results
+# when a selection is made, save it to the DB -->
+
+
+<script type='text/javascript'>
+
+$(document).ready(function(){
+
+
+  $('#submitter').on('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var titlesearch = $("#titleinput").val();
+    var url = "http://www.omdbapi.com/?s=" + titlesearch
+    $.ajax({ url:   url,
+             type: 'get',
+             dataType: 'json'
+           }).success(function(data) {
+              var parsed = data["Search"];
+
+             $.each(parsed, function(k, v) {
+              console.log("title: " + v["Title"] + " year: " + v["Year"]);
+              $("#search-lister").append('<li>'+ v["Title"]+v["Year"] +
+                "<a href=http://www.imdb.com/title/" + v["imdbID"] + ">" + " imdb link" + '</a>' +'</li>');
+            });
+
+
+          });
+  });
+
+  // final closer
+});
+
+</script>
