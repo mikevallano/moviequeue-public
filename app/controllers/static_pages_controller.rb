@@ -12,11 +12,12 @@ def results
 end
 
 
-def search2
+def apisearch
   if params[:movie_title]
     @movie_title = params[:movie_title].gsub(" ","-")
   else
-    @movie_title = "fargo"
+    @pre_search = "Search for a movie"
+    # @movie_title = "fargo"
   end
 
   @content = open("http://www.omdbapi.com/?s=#{@movie_title}").read
