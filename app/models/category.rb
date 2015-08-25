@@ -5,9 +5,9 @@ class Category < ActiveRecord::Base
   friendly_id :name, :use => :history
 
   #this updates the slug if the title changes
-  # def should_generate_new_friendly_id?
-  #   name_changed?
-  # end
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
 
 

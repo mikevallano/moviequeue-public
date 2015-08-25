@@ -6,9 +6,9 @@ class Watchlist < ActiveRecord::Base
   friendly_id :list, :use => :history
 
   #this updates the slug if the title changes
-  # def should_generate_new_friendly_id?
-  #   list_changed?
-  # end
+  def should_generate_new_friendly_id?
+    list_changed?
+  end
 
 
 end
