@@ -48,9 +48,11 @@ end
 #  been_watched      :boolean
 #  year_released     :string
 #  imdb_actors       :string
+#  slug              :string
 #
 # Indexes
 #
 #  index_movies_on_category_id   (category_id)
+#  index_movies_on_slug          (slug)
 #  index_movies_on_watchlist_id  (watchlist_id)
 #
