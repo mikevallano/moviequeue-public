@@ -12,6 +12,13 @@ class WatchlistsController < ApplicationController
   # GET /watchlists/1
   # GET /watchlists/1.json
   def show
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the watchlist_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != watchlist_path(@watchlist)
+      return redirect_to @watchlist, :status => :moved_permanently
+    end
+    # search logic
     if params[:search].present?
       if Movie.text_search(params[:search]).count < 1
         @noresults = "Sorry, could not find that movie."
@@ -90,7 +97,7 @@ class WatchlistsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_watchlist
-      @watchlist = Watchlist.find(params[:id])
+      @watchlist = Watchlist.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825011223) do
+ActiveRecord::Schema.define(version: 20150825011618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,7 +107,10 @@ ActiveRecord::Schema.define(version: 20150825011223) do
     t.string   "list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
+
+  add_index "watchlists", ["slug"], name: "index_watchlists_on_slug", using: :btree
 
   add_foreign_key "movies", "categories"
   add_foreign_key "movies", "watchlists"

@@ -14,4 +14,9 @@ end
 #  list       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  slug       :string
+#
+# Indexes
+#
+#  index_watchlists_on_slug  (slug)
 #
