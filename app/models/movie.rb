@@ -5,6 +5,14 @@ class Movie < ActiveRecord::Base
   validates :title, :watchlist_id, presence: true
   validates :title, presence: true, uniqueness: true
 
+  include FriendlyId
+  friendly_id :title, :use => :history
+
+  #this updates the slug if the title changes
+  # def should_generate_new_friendly_id?
+  #   title_changed?
+  # end
+
   def self.text_search(search)
     where("title ilike ?", '%' + search + '%')
   end

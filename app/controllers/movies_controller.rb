@@ -36,6 +36,12 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the movie_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != movie_path(@movie)
+      return redirect_to @movie, :status => :moved_permanently
+    end
   end
 
   # GET /movies/new
@@ -143,7 +149,7 @@ class MoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
-      @movie = Movie.find(params[:id])
+      @movie = Movie.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
