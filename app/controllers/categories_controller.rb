@@ -12,6 +12,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the category_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if request.path != category_path(@category)
+      return redirect_to @category, :status => :moved_permanently
+    end
     @watchdiv = params[:watchdiv]
      if @watchdiv == 'unwatched'
       @unwatched_movies = @category.movies.notnope.unwatched.paginate(:page => params[:page], :per_page => 18).order('created_at DESC')
@@ -77,7 +83,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
