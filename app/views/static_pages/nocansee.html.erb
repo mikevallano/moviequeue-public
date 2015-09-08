@@ -1,14 +1,14 @@
-<h1>This site is just not ready for you yet.</h1>
+<h1 class="white">This site is just not ready for you yet.</h1>
 
 <% if user_signed_in? %>
   <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete), class: "white" %>
   </li>
 <% else %>
   <li>
-  <%= link_to('Sign up', new_user_registration_path)  %>
+  <%= link_to('Sign up', new_user_registration_path), class: "white"  %>
   </li>
   <li>
-  <%= link_to('Sign in', new_user_session_path)  %>
+  <%= link_to('Sign in', new_user_session_path), class: "white"  %>
   </li>
 <% end %>
