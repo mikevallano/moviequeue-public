@@ -280,8 +280,14 @@ a:hover {
 
 /* STATIC PAGES */
 .apisearch {
+  margin: 0 auto;
   background-color: white;
-  border: 10px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  min-height: 223px;
+  width: 70%;
+  min-width: 400px;
 }
 
 .apisearch h3, p {
@@ -290,10 +296,7 @@ a:hover {
 
 .apisearch img {
   margin-right: 30px;
-}
-
-.apisearch td {
-  padding: 10px;
+  float: left;
 }
 
 /* Overrides */
@@ -301,7 +304,4 @@ a:hover {
   color: white;
 }
 
-.center {
-  margin: 0 auto;
-}
 
