@@ -11,13 +11,11 @@
 
 <h2>Here are the matching movies on OMDB</h2>
 <br><br>
-  <table class="center">
-
-    <tbody>
+  
      <% @results.each do |result| %>
-       <tr class="apisearch">
-           <td><%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork modal-art-margin" %></td>
-          <td><h3><%= result[:Title] %></h3>
+       <div class="apisearch">
+           <%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %>
+          <h3><%= result[:Title] %></h3>
           <p><%= result[:Year] %> (<%= link_to "IMDB", "http://www.imdb.com/title/#{result[:imdbID]}/", target: '_blank' %>)</p>
           
             <form action="/movies" method="post">
@@ -36,13 +34,10 @@
             </select>
               <input type="submit" value="Add this movie">
             </form>
-          </td>
-        </tr>
-      <% end %> <!-- each do -->
-    </tbody>
-  </table>
+          </div><!-- apisearch-->
+      <% end %> 
 
-<% end %>
+<% end %><!-- each do ?-->
 
 <script type='text/javascript'>
 
