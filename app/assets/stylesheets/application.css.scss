@@ -125,6 +125,7 @@ a:hover {
 .dropshadow {
   text-shadow: 2px 2px 5px #000000;
 }
+
 /* Movies Index & Show Pages */
 
  .pagination {
@@ -276,4 +277,31 @@ a:hover {
  .form-text a {
   color: #f1f1f1;
  }
+
+/* STATIC PAGES */
+.apisearch {
+  background-color: white;
+  border: 10px solid black;
+}
+
+.apisearch h3, p {
+  color: black;
+}
+
+.apisearch img {
+  margin-right: 30px;
+}
+
+.apisearch td {
+  padding: 10px;
+}
+
+/* Overrides */
+.white {
+  color: white;
+}
+
+.center {
+  margin: 0 auto;
+}
 
