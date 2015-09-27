@@ -1,40 +1,23 @@
 <% if !@movie_title.present? %>
-
+  
   <h1>Search the OMDB Database to Find a Movie</h1>
 
   <%= form_tag '/apisearch', method: :get do %>
-    <%= label_tag :movie_title, "Enter Title:" %>
-    <%= text_field_tag :movie_title %><br>
-    <%= submit_tag "Search", :class => "btn btn-primary" %>
+    <%= label_tag :movie_title, "Enter Title: ", class: "white" %>
+    <%= text_field_tag :movie_title %> <%= submit_tag "Search", :class => "btn btn-xs btn-primary" %>
   <% end %>
-
 
 <% else %>
 
 <h2>Here are the matching movies on OMDB</h2>
-
 <br><br>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Year</th>
-        <th>IMDB Link</th>
-        <th>Cover</th>
-        <th>Submit</th>
-        <th colspan="5"></th>
-      </tr>
-    </thead>
-
-    <tbody>
+  
      <% @results.each do |result| %>
-        <tr>
-          <td><%= result[:Title] %></td>
-          <td><%= result[:Year] %></td>
-          <td><%= link_to "IMDB LINK", "http://www.imdb.com/title/#{result[:imdbID]}/", target: '_blank' %></td>
-          <td><%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %></td>
-          <td>
+       <div class="apisearch">
+           <%= image_tag "http://img.omdbapi.com/?i=#{result[:imdbID]}&apikey=#{ENV['poster_api_key']}", class: "artwork movie-holder-modal modal-art-margin" %>
+          <h3><%= result[:Title] %></h3>
+          <p><%= result[:Year] %> (<%= link_to "IMDB", "http://www.imdb.com/title/#{result[:imdbID]}/", target: '_blank' %>)</p>
+          
             <form action="/movies" method="post">
               <!-- <input type="hidden" name="movie[title]" value='<%= result[:Title] %>'> -->
               <input type="hidden" name="movie[imdbID]" value='<%= result[:imdbID] %>'>
@@ -51,13 +34,10 @@
             </select>
               <input type="submit" value="Add this movie">
             </form>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div><!-- apisearch-->
+      <% end %> 
 
-<% end %>
+<% end %><!-- each do ?-->
 
 <script type='text/javascript'>
 
