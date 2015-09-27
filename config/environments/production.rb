@@ -1,5 +1,21 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+ config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: 587,
+    domain: 'heroku.com',
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD']
+  }
+
+
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => 'https://moviequeue.herokuapp.com/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
 
   # Code is not reloaded between requests.
   config.cache_classes = true
